@@ -1,5 +1,6 @@
 import Form from "./components/form";
 import Header from "./components/header";
+import BookCard from "./components/bookcard";
 
 const App = () => {
 
@@ -8,6 +9,7 @@ const App = () => {
       <Header />
       <Form />
       <h2>Books</h2>
+      <BookCard />
     </div>
   )
 
