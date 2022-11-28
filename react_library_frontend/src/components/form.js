@@ -13,12 +13,12 @@ const Form = () => {
               <div className="form--sub--div title--description--div">
 
                  <div className="specific--form--div">
-                  <label for='title' className="book__title">Title </label>
+                  <label className="book__title" for='title' >Title </label>
                   <input type='text' id="title" name='title' />
                  </div>
 
                  <div className="specific--form--div">
-                  <label for='description' className="book__title">Description </label>
+                  <label for='description' >Description </label>
                   <input type='text' id="description" name='description' />
                  </div>
                                

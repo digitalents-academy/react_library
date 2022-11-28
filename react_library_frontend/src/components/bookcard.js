@@ -2,8 +2,8 @@
 const BookCard = () => {
 
     return (
-        <div>
-          <div className="content--div">
+        <div className="book--card">
+          <div className="conten">
               <img/>
               <div>
                   <h1>Title</h1>
