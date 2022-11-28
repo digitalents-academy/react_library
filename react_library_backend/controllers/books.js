@@ -1,8 +1,12 @@
+// const bookRouter = require("express").Router();
+// const app = require("../index");
+// const { collection } = require("../models/blog");
 const express = require("express");
 const bookRouter = express.Router();
 const Book = require("../models/book.js");
 
 // POST (Create book)
+
 bookRouter.post("/", (request, response, next) => {
   const body = request.body;
   const book = new Book({
@@ -23,15 +27,6 @@ bookRouter.post("/", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-// DELETE by ID
-bookRouter.delete("/:id", (request, response, next) => {
-  Book.findByIdAndRemove(request.params.id)
-    .then(() => {
-      response.status(204).end();
-    })
-    .catch((error) => next(error));
-});
-
 //get all
 bookRouter.get("/", (request, response) => {
   console.log("asd");
@@ -41,17 +36,20 @@ bookRouter.get("/", (request, response) => {
 });
 
 //get id
-bookRouter.get("/:id", (request, response) => {
-  Book.find({}).then((book) => {
-    response.json(book);
-  });
+bookRouter.get("/:id", async (request, response) => {
+  const book = await Book.findById(request.params.id);
+  if (book) {
+    response.json(book.toJSON());
+  } else {
+    response.status(404).end();
+  }
 });
 
 //put
 bookRouter.put("/:id", (request, response, next) => {
   const body = request.body;
   const book = {
-    title: body.title,
+    loanStatus: body.loanStatus,
   };
 
   Book.findByIdAndUpdate(request.params.id, book, { new: true })

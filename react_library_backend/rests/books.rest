@@ -8,3 +8,10 @@ Content-Type: application/json
 {
 "title": "zxc"
 }
+###
+PUT http://localhost:3003/api/books/638494d557641ab9279b9995
+Content-Type: application/json
+
+{
+"loanStatus": true
+}
