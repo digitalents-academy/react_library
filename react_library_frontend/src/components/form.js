@@ -8,13 +8,7 @@ const Form = () => {
             <form className="form">
                 <div className="form--row--container">
                 <div className="form--sub--div title--description--div">
-                {/* <label className="book__title">Title
-                <input type='text' name='title' />
-                </label>
-                
-                 <label className="book__description">Description
-                 <input type='text' name='description'/>
-                 </label> */}
+              
                  <div className="specific--form--div">
                  <label for='title' className="book__title">Title </label>
                  <input type='text' id="title" name='title' />
@@ -28,13 +22,7 @@ const Form = () => {
                  </div>
 
                  <div className="form--sub--div image--genre--div">
-                 {/* <label className="book_image">Image
-                 <input type='text' name='image'/>
-                 </label>
-                 
-                 <label className="book__genre">Genre
-                 <input type='text' name='genre'/>
-                 </label> */}
+            
                   <div className="specific--form--div">
                  <label for='image' className="book__title">Image </label>
                  <input className="submit" type='text' id="image" name='image' />
