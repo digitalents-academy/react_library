@@ -6,6 +6,7 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+
 mongoose
     .connect(process.env.MONGODB_URI)
     .then(() => console.log("DB CONNECTED"))
@@ -13,6 +14,9 @@ mongoose
 
 const router = require('./controllers/books')
 app.use("/api/books/", router);
+
+
+app.use("/api/books", bookRouter);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
