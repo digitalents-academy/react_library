@@ -1,3 +1,0 @@
-POST http://localhost:3003/api/books/
-Content-Type: application/json
-{ "title": "this works" }
