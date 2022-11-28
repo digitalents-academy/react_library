@@ -12,12 +12,9 @@ mongoose
     .then(() => console.log("DB CONNECTED"))
     .catch(err => console.log("DB CONNECTION ERROR", err));
 
-const router = require('./controllers/books')
-app.use("/api/books/", router);
-
-
+const bookRouter = require("./controllers/books");
 app.use("/api/books", bookRouter);
-
+    
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

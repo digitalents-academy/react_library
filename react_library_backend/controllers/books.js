@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const bookRouter = express.Router();
 const Book = require("../models/book.js");
 
 // POST (Create book)
-router.post('/', (request, response, next) => {
+bookRouter.post('/', (request, response, next) => {
     const body = request.body
     const book = new Book({
       title: body.title,
@@ -23,7 +23,7 @@ router.post('/', (request, response, next) => {
 })
 
 // DELETE by ID
-router.delete('/:id', (request, response, next) => {
+bookRouter.delete('/:id', (request, response, next) => {
     Book.findByIdAndRemove(request.params.id)
       .then(() => {
         response.status(204).end()
@@ -60,4 +60,4 @@ bookRouter.put("/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-module.exports = router;
+module.exports = bookRouter;
