@@ -46,7 +46,7 @@ bookRouter.get("/:id", (request, response) => {
 bookRouter.put("/:id", (request, response, next) => {
   const body = request.body;
   const book = {
-    likes: body.likes,
+    title: body.title,
   };
 
   Book.findByIdAndUpdate(request.params.id, book, { new: true })
