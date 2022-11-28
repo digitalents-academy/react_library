@@ -27,12 +27,12 @@ const Form = () => {
               <div className="form--sub--div image--genre--div">
 
                 <div className="specific--form--div">
-                   <label for='image' className="book__title">Image </label>
+                   <label className='image__and__genre' for='image' >Image </label>
                    <input type='text' id="image" name='image' />
                  </div>
 
                  <div className="specific--form--div">
-                   <label for='genre' className="book__title">Genre </label>
+                   <label className='image__and__genre' for='genre'>Genre </label>
                    <input type='text' id="genre" name='genre' />
                  </div>
 
