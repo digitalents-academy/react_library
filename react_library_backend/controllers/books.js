@@ -1,13 +1,8 @@
-// const bookRouter = require("express").Router();
-// const app = require("../index");
-// const { collection } = require("../models/blog");
 const express = require('express');
 const router = express.Router();
 const Book = require("../models/book.js");
 
-
 // POST (Create book)
-
 router.post('/', (request, response, next) => {
     const body = request.body
     const book = new Book({
@@ -23,6 +18,15 @@ router.post('/', (request, response, next) => {
     book.save()
       .then(savedBook => {
         response.json(savedBook)
+      })
+      .catch(error => next(error))
+})
+
+// DELETE by ID
+router.delete('/:id', (request, response, next) => {
+    Book.findByIdAndRemove(request.params.id)
+      .then(() => {
+        response.status(204).end()
       })
       .catch(error => next(error))
 })
