@@ -1,9 +1,33 @@
-const bookRouter = require("express").Router();
+// const bookRouter = require("express").Router();
 // const app = require("../index");
-// const { collection } = require("../models/books");
-const Book = require("../models/book");
+// const { collection } = require("../models/blog");
+const express = require('express');
+const router = express.Router();
+const Book = require("../models/book.js");
 
-//get all m
+
+// POST (Create book)
+
+router.post('/', (request, response, next) => {
+    const body = request.body
+    const book = new Book({
+      title: body.title,
+      author: body.author,
+      genre: body.genre,
+      description: body.description,
+      loanStatus: body.loanStatus || false,
+      img: body.img,
+      tags: body.tags,
+      reservation: body.reservation,
+    })
+    book.save()
+      .then(savedBook => {
+        response.json(savedBook)
+      })
+      .catch(error => next(error))
+})
+
+//get all
 bookRouter.get("/", (request, response) => {
   console.log("asd");
   Book.find({}).then((book) => {
@@ -11,15 +35,14 @@ bookRouter.get("/", (request, response) => {
   });
 });
 
-//get id m
+//get id
 bookRouter.get("/:id", (request, response) => {
   Book.find({}).then((book) => {
     response.json(book);
   });
 });
-//post
-//delete
-//put m
+
+//put
 bookRouter.put("/:id", (request, response, next) => {
   const body = request.body;
   const book = {
@@ -33,4 +56,4 @@ bookRouter.put("/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-module.exports = bookRouter;
+module.exports = router;
