@@ -6,7 +6,9 @@ POST http://localhost:3003/api/books/
 Content-Type: application/json
 
 {
-"title": "zxc"
+"title": "zxc",
+"author": "miika",
+"genre": "fantasy"
 }
 ###
 PUT http://localhost:3003/api/books/638494d557641ab9279b9995

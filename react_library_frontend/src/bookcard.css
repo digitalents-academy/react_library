@@ -1,0 +1,21 @@
+.book--card {
+    border: 1px solid green;
+    width: 20rem;
+}
+.book--content {
+    border: 1px solid red;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.book__image {
+    width: 120px;
+    height: 180px;
+    margin-left: 2rem;
+    margin-right: 1.5rem;
+}
+
+/* .book__info {
+    text-align: right;
+} */
