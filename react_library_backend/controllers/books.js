@@ -59,4 +59,11 @@ bookRouter.put("/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
+bookRouter.delete('/:id', async (request, response) => {
+  await Book.findByIdAndRemove(request.params.id)
+  response.status(204).end()
+})
+
+
+
 module.exports = bookRouter;
