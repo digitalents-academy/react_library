@@ -3,6 +3,10 @@ import service from "../service/books";
 
 const BookCard = (props) => {
 
+    const deleteBookCard = () => {
+        service.deleteName()
+    }
+
     return (
         
           <div className="book--content">
@@ -12,6 +16,7 @@ const BookCard = (props) => {
                   .map((book) => {
                       return (
                       <div className="book--card">
+                          <img className="delete__icon" src="./images/icon-close.svg" onClick={()=>service.deleteName(book.id)} />
                           <img className="book__image" src="./images/cover.jpg" />
                       <h1>{book.title}</h1>
                       <p>Author: {book.author}</p>
@@ -23,10 +28,7 @@ const BookCard = (props) => {
                       </div>)
                   })
                   }
-                  {/* <h1>Title</h1>
-                  <p>Description</p>
-                  <p>Genre</p>
-                  <p>BORROWED</p> */}
+               
               </div>
           </div>
        
