@@ -1,48 +1,64 @@
-
+import React from 'react'
+import axios from 'axios'
 
 const Form = () => {
 
-    return (
-        <div className="form--container">
+  function handleCreateNew(e) {
+    e.preventDefault();
 
-            <h2>ADD NEW BOOK</h2>
+    const newBook = {
+      title: e.target.title.value,
+      author: e.target.author.value,
+      genre: e.target.genre.value,
+      description: e.target.description.value,
+      img: e.target.image.value
+    }
 
-            <form className="form">
+    axios.post('http://localhost:3003/api/books/', newBook)
+    .then(res => console.log(res.data));
 
-            <div className="form--row--container">
-              <div className="form--sub--div title--description--div">
+    // Clear input field after submit
+    e.target.title.value = ""
+    e.target.author.value = ""
+    e.target.genre.value = ""
+    e.target.description.value = ""
+    e.target.image.value = ""
+  }
 
-                 <div className="specific--form--div">
-                  <label className="book__title" for='title' >Title </label>
-                  <input type='text' id="title" name='title' />
-                 </div>
-
-                 <div className="specific--form--div">
-                  <label for='description' >Description </label>
-                  <input type='text' id="description" name='description' />
-                 </div>
-                               
-              </div>
-
-              <div className="form--sub--div image--genre--div">
-
-                <div className="specific--form--div">
-                   <label className='image__and__genre' for='image' >Image </label>
-                   <input type='text' id="image" name='image' />
-                 </div>
-
-                 <div className="specific--form--div">
-                   <label className='image__and__genre' for='genre'>Genre </label>
-                   <input type='text' id="genre" name='genre' />
-                 </div>
-
-               </div>
-             </div>
-                
-                 <input className="submit__button" type='submit' value='Create Book'/>
-            </form>
+  return (
+    <div className="form--container">
+      <h2>ADD NEW BOOK</h2>
+      <form className="form" onSubmit={handleCreateNew}>
+        <div className="form--row--container">
+          <div className="form--sub--div title--description--div">
+            <div className="specific--form--div">
+              <label htmlFor='title' className="book__title"> Title </label>
+              <input type='text' id="title" name='title' />
+            </div>
+            <div className="specific--form--div">
+              <label htmlFor='author' className="book__author"> Author </label>
+              <input type='text' id="author" name='author' />
+            </div>
+            <div className="specific--form--div">
+              <label htmlFor='description' className="book__title"> Description </label>
+              <input type='text' id="description" name='description' />
+            </div>
+          </div>
+          <div className="form--sub--div image--genre--div">
+            <div className="specific--form--div">
+              <label className='image__and__genre' htmlFor='image' > Image </label>
+              <input type='text' id="image" name='image' />
+            </div>
+            <div className="specific--form--div">
+              <label className='image__and__genre' htmlFor='genre'> Genre </label>
+              <input type='text' id="genre" name='genre' />
+            </div>
+          </div>
         </div>
-    )
+        <input className="submit__button" type='submit' value='Create Book'/>
+      </form>
+    </div>
+  )
 }
 
 export default Form;
