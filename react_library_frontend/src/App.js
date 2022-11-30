@@ -1,5 +1,6 @@
 import Form from "./components/form";
 import Header from "./components/header";
+import Search from "./components/Search";
 import BookCard from "./components/bookcard";
 import service from "./service/books";
 import axios from "axios";
@@ -23,8 +24,8 @@ const App = () => {
     <div>
       <Header />
       <Form />
+      <Search books={books}/>
       <h2>Books</h2>
-      <BookCard books={books}/>
     </div>
   )
 
