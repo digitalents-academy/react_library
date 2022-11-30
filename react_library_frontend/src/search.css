@@ -1,0 +1,26 @@
+/* Fonts
+font-family: 'Raleway', sans-serif;
+Weights: 100, 200, 300, 400 
+*/
+
+.search-bar {
+    width: 50%;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
+    border-radius: 10px;
+
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+input[name="search-input"] {
+    border: none;
+    outline: none;
+}
+
+input[name="search-input"]::placeholder {
+    font-family: 'Raleway', sans-serif;
+    color: gray;
+}
