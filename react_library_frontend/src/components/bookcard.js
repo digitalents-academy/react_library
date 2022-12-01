@@ -1,7 +1,7 @@
 import service from "../service/books";
 
 
-const BookCard = (props) => {
+const BookCard = ( {filteredBooks} ) => {
 
     const deleteBookCard = () => {
         service.deleteName()
@@ -12,7 +12,7 @@ const BookCard = (props) => {
           <div className="book--content">
               
               <div className="book__info">
-                  {props.books
+                  {filteredBooks
                   .map((book) => {
                       return (
                       <div className="book--card">
