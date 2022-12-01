@@ -13,7 +13,7 @@ function Search({ books }) {
         if (searchInput === '') {
             return book;
         } else {
-            return book.title.toLowerCase().includes(searchInput) || book.genre.toLowerCase().includes(searchInput)
+            return book.title.toLowerCase().includes(searchInput) || book.genre.toLowerCase() === searchInput
         } 
     })
 
