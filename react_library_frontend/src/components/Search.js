@@ -13,15 +13,28 @@ function Search({ books }) {
         if (searchInput === '') {
             return book;
         } else {
-            return book.title.toLowerCase().includes(searchInput)
+            return book.title.toLowerCase().includes(searchInput) || book.genre.toLowerCase() === searchInput
         } 
     })
 
+    const genres = [...new Set(books.map((book) => book.genre))]
+
+    const capitalize = (string) => string[0].toUpperCase() + string.slice(1)
+
     return (
         <div>
-            <div className="search-bar">
-                <ion-icon name="search-outline"></ion-icon>
-                <input onChange={searchHandler} name="search-input" placeholder="Search for a book..."></input>
+            <div className="search-and-filter">
+                <div className="search-bar">
+                    <ion-icon name="search-outline"></ion-icon>
+                    <input onChange={searchHandler} name="search-input" placeholder="Search for a book..."></input>
+                </div>
+
+                <div className="filter-by-genre">
+                    <select onChange={searchHandler} name="genres" id="genres">
+                        <option value=""> Filter by Genre </option>
+                        {genres.map((genre) => <option key={genre}> {capitalize(genre)} </option> )}
+                    </select>
+                </div>
             </div>
             <BookCard filteredBooks={filteredBooks}/>
         </div>
