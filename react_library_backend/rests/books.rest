@@ -11,11 +11,11 @@ Content-Type: application/json
 "genre": "fantasy"
 }
 ###
-PUT http://localhost:3003/api/books/638494d557641ab9279b9995
+PUT http://localhost:3003/api/books/63872e2a4f2f46922e1133bf
 Content-Type: application/json
 
 {
-"loanStatus": true
+"loanStatus": false
 }
 ###
 DELETE http://localhost:3003/api/books/63848f01dc1164e66a91b416

@@ -16,9 +16,9 @@ const App = () => {
     service.getAll().then((book) => {
       setBooks(book);
     });
-  }, []);
+  }, [books]);
 
-  console.log(books);
+ 
 
   return (
     <div>

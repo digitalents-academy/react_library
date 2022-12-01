@@ -29,7 +29,6 @@ bookRouter.post("/", (request, response, next) => {
 
 //get all
 bookRouter.get("/", (request, response) => {
-  console.log("asd");
   Book.find({}).then((book) => {
     response.json(book);
   });
