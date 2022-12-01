@@ -29,7 +29,6 @@ bookRouter.post("/", (request, response, next) => {
 
 //get all
 bookRouter.get("/", (request, response) => {
-  console.log("asd");
   Book.find({}).then((book) => {
     response.json(book);
   });
@@ -52,18 +51,16 @@ bookRouter.put("/:id", (request, response, next) => {
     loanStatus: body.loanStatus,
   };
 
-  Book.findByIdAndUpdate(request.params.id, book, { new: true })
+  Book.findByIdAndUpdate(request.params.id, book)
     .then((updatedBook) => {
       response.json(updatedBook);
     })
     .catch((error) => next(error));
 });
 
-bookRouter.delete('/:id', async (request, response) => {
-  await Book.findByIdAndRemove(request.params.id)
-  response.status(204).end()
-})
-
-
+bookRouter.delete("/:id", async (request, response) => {
+  await Book.findByIdAndRemove(request.params.id);
+  response.status(204).end();
+});
 
 module.exports = bookRouter;
