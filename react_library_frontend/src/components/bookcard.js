@@ -1,13 +1,9 @@
-import service from "../service/books";
-
-
 const BookCard = ( {filteredBooks} ) => {
 
     return (
-        
           <div className="book--content">
-              
               <div className="book__info">
+              <h2>Books</h2>
                   {filteredBooks
                   .map((book) => {
                       return (
@@ -18,7 +14,6 @@ const BookCard = ( {filteredBooks} ) => {
                       <p>Genre: {book.genre}</p>
                       <p>{book.description}</p>
                       <p>{book.loanStatus ? 'Borrowed' : 'Available'}</p>
-                      
                       <button>{book.loanStatus ? 'Reserve' : 'Loan'}</button>
                       </div>)
                   })
@@ -29,7 +24,6 @@ const BookCard = ( {filteredBooks} ) => {
                   <p>BORROWED</p> */}
               </div>
           </div>
-       
     )
 }
 

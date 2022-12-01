@@ -17,6 +17,10 @@ function Search({ books }) {
         } 
     })
 
+    const genres = [...new Set(books.map((book) => book.genre))]
+
+    const capitalize = (string) => string[0].toUpperCase() + string.slice(1)
+
     return (
         <div>
             <div className="search-and-filter">
@@ -27,12 +31,8 @@ function Search({ books }) {
 
                 <div className="filter-by-genre">
                     <select onChange={searchHandler} name="genres" id="genres">
-                        <option value="">Filter by Genre</option>
-                        <option value="horror">Horror</option>
-                        <option value="fantasy">Fantasy</option>
-                        <option value="nonfiction">Non-fiction</option>
-                        <option value="selfhelp">Self Help</option>
-                        <option value="fiction">Fiction</option>
+                        <option value=""> Filter by Genre </option>
+                        {genres.map((genre) => <option key={genre}> {capitalize(genre)} </option> )}
                     </select>
                 </div>
             </div>
