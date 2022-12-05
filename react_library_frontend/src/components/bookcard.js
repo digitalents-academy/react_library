@@ -14,12 +14,14 @@ const BookCard = ({ filteredBooks }) => {
                   src="./images/icon-close.svg"
                   onClick={() => service.deleteBook(book.id)}
                 />
-                <img className="book__image" src="./images/cover.jpg" />
+                <img className="book__image" src={book.img} />
                 <h1>{book.title}</h1>
                 <p>Author: {book.author}</p>
                 <p>Genre: {book.genre}</p>
+                <p>Release: {book.releaseYear}</p>
                 <p>{book.description}</p>
                 <p>{book.loanStatus ? "Loaned" : "Available"}</p>
+                
 
                 <button
                   onClick={() =>
