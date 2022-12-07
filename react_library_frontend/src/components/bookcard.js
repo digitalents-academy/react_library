@@ -3,27 +3,32 @@ import React from "react";
 
 const BookCard = ({ filteredBooks }) => {
   return (
-    <div className="book--content">
-      <div className="book__info">
+    <div className="bookCardContainer">
+      
         {filteredBooks.map((book) => {
           return (
             <React.Fragment key={book.id}>
-              <div className="book--card">
+              <div className="bookCard">
+                  <div className="bookCard__title">
+                  <h1>{book.title}</h1>
                 <img
-                  className="delete__icon"
+                  className="bookCard__deleteIcon"
                   src="./images/icon-close.svg"
                   onClick={() => service.deleteBook(book.id)}
                 />
-                <img className="book__image" src={book.img} />
-                <h1>{book.title}</h1>
+                  </div>
+             
+                <img className="bookCard__image" src={book.img} />
+
+                <div className="book__content">
+
                 <p>Author: {book.author}</p>
                 <p>Genre: {book.genre}</p>
                 <p>Release: {book.releaseYear}</p>
                 <p>{book.description}</p>
                 <p>{book.loanStatus ? "Loaned" : "Available"}</p>
                 
-
-                <button
+                 <button className="bookCard__button"
                   onClick={() =>
                     service.updateLoanStatus(book.id, {
                       loanStatus: !book.loanStatus,
@@ -33,10 +38,12 @@ const BookCard = ({ filteredBooks }) => {
                   {book.loanStatus ? "Return" : "Loan"}
                 </button>
               </div>
+                 </div>
+        
             </React.Fragment>
           );
         })}
-      </div>
+      
     </div>
   );
 };
