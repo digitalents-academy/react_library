@@ -41,18 +41,33 @@ userRouter.get("/", async (request, response) => {
 });
 
 // Get user by ID
-userRouter.get('/:id', async (request, response) => {
-  const user = await User.findById(request.params.id)
+userRouter.get("/:id", async (request, response) => {
+  const user = await User.findById(request.params.id);
   if (user) {
-    response.json(user.toJSON())
+    response.json(user.toJSON());
   } else {
-    response.status(404).end()
+    response.status(404).end();
   }
-})
+});
 
 userRouter.delete("/:id", async (request, response) => {
   await User.findByIdAndRemove(request.params.id);
   response.status(204).end();
+});
+
+userRouter.put("/:id", (request, response) => {
+  const body = request.body;
+
+  //   const user = {
+  //     email: body.email,
+  //     loaned: body.loaned,
+  //   };
+
+  User.findByIdAndUpdate(request.params.id, { email: body.email }).then(
+    (updatedUser) => {
+      response.json(updatedUser);
+    }
+  );
 });
 
 module.exports = userRouter;
