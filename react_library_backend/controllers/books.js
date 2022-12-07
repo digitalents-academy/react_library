@@ -27,7 +27,7 @@ bookRouter.post("/", (request, response, next) => {
 
 //get all
 bookRouter.get("/", async (request, response) => {
-  const books = await Book.find({}).populate("author", {
+  const books = await Book.find({}).populate("loaner", {
     email: 1,
   });
   response.json(books);
