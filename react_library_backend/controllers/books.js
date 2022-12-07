@@ -4,6 +4,7 @@
 const express = require("express");
 const bookRouter = express.Router();
 const Book = require("../models/book.js");
+const User = require("../models/user");
 
 // POST (Create book)
 
@@ -29,10 +30,11 @@ bookRouter.post("/", (request, response, next) => {
 });
 
 //get all
-bookRouter.get("/", (request, response) => {
-  Book.find({}).then((book) => {
-    response.json(book);
+bookRouter.get("/", async (request, response) => {
+  const books = await Book.find({}).populate("author", {
+    email: 1,
   });
+  response.json(books);
 });
 
 //get id

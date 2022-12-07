@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
 "title": "zxc",
-"author": "miika",
+"author": "asd",
 "genre": "fantasy"
 }
 ###
