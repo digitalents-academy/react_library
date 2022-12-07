@@ -40,4 +40,9 @@ userRouter.get("/", async (request, response) => {
   response.json(users);
 });
 
+userRouter.delete("/:id", async (request, response) => {
+  await User.findByIdAndRemove(request.params.id);
+  response.status(204).end();
+});
+
 module.exports = userRouter;

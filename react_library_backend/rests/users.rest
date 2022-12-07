@@ -2,10 +2,15 @@ POST http://localhost:3003/api/users HTTP/1.1
 Content-Type: application/json
 
 {
-"email": "asd1@gmail.com",
-"password": "asd123"
+"email": "qwe@gmail.com",
+"password": "password123"
 }
 
 ###
 
 GET http://localhost:3003/api/users HTTP/1.1 
+
+
+###
+
+DELETE http://localhost:3003/api/users/6390746bfc719779f63d9559
