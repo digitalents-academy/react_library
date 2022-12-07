@@ -18,4 +18,4 @@ Content-Type: application/json
 "loanStatus": false
 }
 ###
-DELETE http://localhost:3003/api/books/63848f01dc1164e66a91b416
+DELETE http://localhost:3003/api/books/638dcd0ea78100ef0a6c3ce2

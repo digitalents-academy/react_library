@@ -13,6 +13,7 @@ bookRouter.post("/", (request, response, next) => {
     title: body.title,
     author: body.author,
     genre: body.genre,
+    releaseYear: body.releaseYear,
     description: body.description,
     loanStatus: body.loanStatus || false,
     img: body.img,
