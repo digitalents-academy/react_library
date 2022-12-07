@@ -3,6 +3,8 @@ import Header from "./components/header";
 import Search from "./components/Search";
 import service from "./service/books";
 import { useState, useEffect} from 'react';
+import LoginForm from "./components/loginForm";
+import RegisterForm from "./components/registerForm";
 
 const App = () => {
   
@@ -18,6 +20,10 @@ const App = () => {
     <div>
       <Header />
       <Form />
+      <div style={{display: 'flex'}}>
+      <LoginForm />
+      <RegisterForm />
+      </div>
       <Search books={books} />
     </div>
   )
