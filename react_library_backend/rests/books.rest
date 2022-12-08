@@ -4,11 +4,12 @@ GET http://localhost:3003/api/books/638494d557641ab9279b9995
 ###
 POST http://localhost:3003/api/books/
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmlnaHRAZ21haWwuY29tIiwiaWQiOiI2MzkxY2I4Y2QzZDhlMTNmOWY4MWRkNGMiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY3MDQ5OTIzMH0.kqEOxV00MqmuoQUAyHbk34yOgrzGEc_KtbCkpQgvdNI
 
 {
-"title": "zxc",
-"author": "asd",
-"genre": "fantasy"
+"title": "test3",
+"author": "tester",
+"genre": "test"
 }
 ###
 PUT http://localhost:3003/api/books/63872e2a4f2f46922e1133bf
