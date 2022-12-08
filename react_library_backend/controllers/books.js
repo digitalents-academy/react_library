@@ -46,11 +46,11 @@ bookRouter.get("/:id", async (request, response) => {
 // PUT (Update book with loan status and loaner Id)
 bookRouter.put("/:id", async (request, response, next) => {
   const body = request.body;
-  const user = await User.findById(body.userId)
+  const user = await User.findById(body.loaner._id)
 
   const book = {
     loanStatus: body.loanStatus,
-    loaner: user._id
+    // loaner:{_id: user._id, email: user.email}
   };
   
   Book.findByIdAndUpdate(request.params.id, book)
