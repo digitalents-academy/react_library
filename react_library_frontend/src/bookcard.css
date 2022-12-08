@@ -1,21 +1,83 @@
-.book--card {
-    border: 1px solid green;
-    width: 20rem;
-}
-.book--content {
+.bookCardContainer {
     border: 1px solid red;
     display: flex;
+    flex-direction: column;
     justify-content: left;
-    align-items: center;
+
 }
 
-.book__image {
-    width: 120px;
-    height: 180px;
-    margin-left: 2rem;
-    margin-right: 1.5rem;
+
+.bookCard {
+    border: 1px solid green;
+    width: 30rem;
+   position: relative;
+   
+   display: flex;
+   flex-direction: column;
+  
+   margin-bottom: 2rem;
 }
 
-/* .book__info {
-    text-align: right;
-} */
+.imageAndContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.book__content {
+    position: absolute;
+    top: 0;
+   padding-left: 2rem;
+   padding-right: 2rem;
+    visibility: hidden;
+    height: 0rem;
+    transition: visibility  ease-in , height .5s;
+   
+}
+
+
+
+
+.bookCard:hover  .book__content {
+  background-color: black;
+  opacity: .9;
+  width: 100%;
+  height: 100%;
+  color: white;
+   display: flex;
+   flex-direction: column;
+   visibility: visible;
+   justify-content: space-around;
+   
+}
+
+.bookCard__title {
+    border: 1px solid blue;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+}
+
+.bookCard__deleteIcon {
+    height: 2rem;
+}
+
+.bookCard__image{
+    width: 25rem;
+    height: 30rem;
+   
+   
+}
+
+.bookStatus {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bookCard__button {
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+}
