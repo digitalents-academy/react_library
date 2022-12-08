@@ -1,12 +1,9 @@
-// const bookRouter = require("express").Router();
-// const app = require("../index");
-// const { collection } = require("../models/blog");
 const express = require("express");
 const bookRouter = express.Router();
 const Book = require("../models/book.js");
+const User = require("../models/user");
 
 // POST (Create book)
-
 bookRouter.post("/", (request, response, next) => {
   const body = request.body;
   const book = new Book({
@@ -29,10 +26,11 @@ bookRouter.post("/", (request, response, next) => {
 });
 
 //get all
-bookRouter.get("/", (request, response) => {
-  Book.find({}).then((book) => {
-    response.json(book);
+bookRouter.get("/", async (request, response) => {
+  const books = await Book.find({}).populate("loaner", {
+    email: 1,
   });
+  response.json(books);
 });
 
 //get id
@@ -45,18 +43,25 @@ bookRouter.get("/:id", async (request, response) => {
   }
 });
 
-//put
-bookRouter.put("/:id", (request, response, next) => {
+// PUT (Update book with loan status and loaner Id)
+bookRouter.put("/:id", async (request, response, next) => {
   const body = request.body;
+  const user = await User.findById(body.userId)
+
   const book = {
     loanStatus: body.loanStatus,
+    loaner: user._id
   };
-
+  
   Book.findByIdAndUpdate(request.params.id, book)
-    .then((updatedBook) => {
-      response.json(updatedBook);
-    })
-    .catch((error) => next(error));
+  .then((updatedBook) => {
+    response.json(updatedBook);
+  })
+  .catch((error) => next(error));
+  
+  // Add book to user.loaned array
+  user.loaned = user.loaned.concat(request.params.id)
+  await user.save()
 });
 
 bookRouter.delete("/:id", async (request, response) => {
