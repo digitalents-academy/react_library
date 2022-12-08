@@ -31,13 +31,16 @@ const BookCard = ({ filteredBooks }) => {
                 <p className="bookStatus">{book.loanStatus ? "Loaned" : "Available"}</p>
                 
                  <button className="bookCard__button"
-                  onClick={() =>
-                    service.updateLoanStatus(book.id, {
-                      loanStatus: !book.loanStatus,
-                    })
-                  }
+                  // onClick={() =>
+                  //   service.updateLoanStatus(book.id, {
+                  //     loanStatus: !book.loanStatus,
+                  //     loaner: {_id: book.loaner._id, email: book.loaner.email}
+                  //   })
+                  // }
                 >
                   {book.loanStatus ? "Return" : "Loan"}
+                  {/* {console.log(Object.keys(book.loaner).length)}  */}
+                     
                 </button>
               </div>
               </div>
