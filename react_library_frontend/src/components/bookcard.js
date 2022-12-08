@@ -1,5 +1,6 @@
 import service from "../service/books";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BookCard = ({ filteredBooks }) => {
   return (
@@ -23,7 +24,7 @@ const BookCard = ({ filteredBooks }) => {
                 <img className="bookCard__image" src={book.img} />
 
                 <div className="book__content">
-                <h1><a href="#">{book.title}</a></h1>
+                <Link to={"/" + book.id}> <h1>{book.title}</h1> </Link>
                 <p>Author: {book.author}</p>
                 <p>Genre: {book.genre}</p>
                 <p>Release: {book.releaseYear}</p>
