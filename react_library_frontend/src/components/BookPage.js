@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import axios from 'axios'
 import '../book-page.css'
+import { Link } from 'react-router-dom'
 
 function BookPage( {books} ) {
 
@@ -40,7 +41,7 @@ function BookPage( {books} ) {
                         {sameAuthorOrGenre.map((recomBook) => (
                             <div key={recomBook.id} className="recom-one">
                                 <img className='recom-image' src={recomBook.img} alt='book cover'/>
-                                <p>{recomBook.title}</p>
+                                <Link to={"/" + recomBook.id}><p>{recomBook.title}</p></Link>
                             </div>
                         ))}
                     </div>
