@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: left;
-    /* align-items: center; */
+
 }
 
 
@@ -14,37 +14,46 @@
    
    display: flex;
    flex-direction: column;
-   align-items: center;
+  
    margin-bottom: 2rem;
+}
+
+.imageAndContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .book__content {
     position: absolute;
-    top: 5.5rem;
-    /* padding-top: 5rem; */
-    /* display: none; */
+    top: 0;
+   padding-left: 2rem;
+   padding-right: 2rem;
     visibility: hidden;
     height: 0rem;
     transition: visibility  ease-in , height .5s;
-
+   
 }
 
-.bookCard:hover > .book__content {
+
+
+
+.bookCard:hover  .book__content {
   background-color: black;
   opacity: .9;
   width: 100%;
-  height: 30rem;
+  height: 100%;
   color: white;
    display: flex;
    flex-direction: column;
    visibility: visible;
    justify-content: space-around;
+   
 }
 
 .bookCard__title {
     border: 1px solid blue;
     width: 100%;
-    /* background-color: white; */
     display: flex;
     align-items: baseline;
     justify-content: space-around;
@@ -58,10 +67,17 @@
     width: 25rem;
     height: 30rem;
    
+   
+}
+
+.bookStatus {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bookCard__button {
     width: 10rem;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 2rem;
 }
