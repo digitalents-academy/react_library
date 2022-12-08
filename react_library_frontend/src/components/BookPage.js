@@ -15,17 +15,36 @@ function BookPage( {books} ) {
         .catch((error) => console.log(error))
     }, [book])
 
+    // Recommended books
+    const otherBooks = books.filter((b) => b.id !== book.id)
+    const sameAuthorOrGenre = otherBooks.filter((b) => b.author === book.author || b.genre === book.genre)
+    
     return (
         <div className='book-page'>
-            {book.img && <img className='book-image' src={book.img} alt='cover'/>}
-            <div className='book-text'>
-                {book.title && <h1> {book.title} </h1>}
-                {book.author && <p><b> Author: </b>{book.author}</p>}
-                {book.genre && <p><b> Genre: </b>{book.genre}</p>}
-                {book.releaseYear && <p><b> Released: </b>{book.releaseYear}</p>}
-                {book.description && <p><b> Description: </b>{book.description}</p>}
-                <p className={book.loanStatus ? 'status-loaned' : 'status-available'}> {book.loanStatus ? "NOT AVAILABLE" : "AVAILABLE"}</p>
+            <div className='img-and-text'>
+                <img className='book-image' src={book.img} alt='book cover'/>
+                <div className='book-text'>
+                    <h1> {book.title} </h1>
+                    <p><b> Author: </b>{book.author}</p>
+                    {book.genre && <p><b> Genre: </b>{book.genre}</p>}
+                    {book.releaseYear && <p><b> Released: </b>{book.releaseYear}</p>}
+                    {book.description && <p><b> Description: </b>{book.description}</p>}
+                    <p className={book.loanStatus ? 'status-loaned' : 'status-available'}> {book.loanStatus ? "NOT AVAILABLE" : "AVAILABLE"}</p>
+                </div>
             </div>
+
+            {sameAuthorOrGenre.length > 0 && 
+                <div className="recom-div">
+                    <h2>Recommended books</h2>
+                    <div className='recom-all'>
+                        {sameAuthorOrGenre.map((recomBook) => (
+                            <div key={recomBook.id} className="recom-one">
+                                <img className='recom-image' src={recomBook.img} alt='book cover'/>
+                                <p>{recomBook.title}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>}
         </div>
     )
 }
