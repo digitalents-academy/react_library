@@ -24,13 +24,19 @@ const BookCard = ({ filteredBooks }) => {
                 <img className="bookCard__image" src={book.img} />
 
                 <div className="book__content">
-                <Link to={"/" + book.id}> <h1>{book.title}</h1> </Link>
+
+                <div className="titleAndBookPageLink">
+                <h1>{book.title}</h1>
+                <Link to={"/" + book.id} style={{textDecoration: 'none'}}> <h2 className="book--link">More Info</h2> </Link>
+                </div>
+                
                 <p>Author: {book.author}</p>
                 <p>Genre: {book.genre}</p>
                 <p>Release: {book.releaseYear}</p>
                 <p>{book.description}</p>
                 <p className="bookStatus">{book.loanStatus ? "Loaned" : "Available"}</p>
-                
+
+               
                  <button className="bookCard__button"
                   // onClick={() =>
                   //   service.updateLoanStatus(book.id, {
@@ -43,6 +49,8 @@ const BookCard = ({ filteredBooks }) => {
                   {/* {console.log(Object.keys(book.loaner).length)}  */}
                      
                 </button>
+
+               
               </div>
               </div>
                  </div>

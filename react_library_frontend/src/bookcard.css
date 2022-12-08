@@ -6,6 +6,26 @@
 
 }
 
+.titleAndBookPageLink {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: relative;
+}
+
+.book--link {
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    font-size: medium;
+    color: green;
+    transition: 1s;
+}
+
+.book--link:hover {
+    font-size: large;
+}
+
 
 .bookCard {
     border: 1px solid green;

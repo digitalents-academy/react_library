@@ -4,6 +4,8 @@
     gap: 50px;
     font-family: 'Raleway', sans-serif;
     line-height: 1.6;
+
+   
 }
 
 .book-image {
@@ -30,3 +32,4 @@
     font-size: 20px;
     text-shadow: 2px 2px lightgrey;
 }
+

@@ -3,10 +3,14 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 import '../book-page.css'
 
+
 function BookPage( {books} ) {
 
     const [book, setBook] = useState({})
     const bookId = useParams()
+
+
+
 
     // Fetch individual book & save to state
     useEffect(() => {
@@ -25,7 +29,11 @@ function BookPage( {books} ) {
                 {book.releaseYear && <p><b> Released: </b>{book.releaseYear}</p>}
                 {book.description && <p><b> Description: </b>{book.description}</p>}
                 <p className={book.loanStatus ? 'status-loaned' : 'status-available'}> {book.loanStatus ? "NOT AVAILABLE" : "AVAILABLE"}</p>
+
+            
             </div>
+
+          
         </div>
     )
 }
