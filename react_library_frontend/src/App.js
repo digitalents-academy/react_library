@@ -1,8 +1,11 @@
 import Form from "./components/form";
 import Header from "./components/header";
 import Search from "./components/Search";
+import BookPage from "./components/BookPage";
 import service from "./service/books";
 import { useState, useEffect} from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import './index.css';
@@ -23,15 +26,22 @@ const App = () => {
   }, [books]);
 
   return (
-    <div>
+    <Router>
       <Header />
-      <Form />
-      <div style={{display: 'flex'}}>
-      <LoginForm />
-      <RegisterForm />
-      </div>
-      <Search books={books} />
-    </div>
+      <Routes>
+        <Route path="/" element={
+            <div>
+              <Form />
+                <div style={{display: 'flex'}}>
+                  <LoginForm />
+                  <RegisterForm />
+                </div>
+              <Search books={books} />
+            </div>
+        }/>
+        <Route path="/:bookId" element={ <BookPage books={books} /> }/>
+      </Routes>
+    </Router>
   )
 }
 
