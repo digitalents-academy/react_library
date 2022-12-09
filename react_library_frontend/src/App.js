@@ -36,7 +36,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header user={user}/>
       <Routes>
         <Route path="/" element={
             <div>
