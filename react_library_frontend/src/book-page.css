@@ -1,11 +1,12 @@
 .book-page {
     margin: 50px;
-    display: flex;
-    gap: 50px;
     font-family: 'Raleway', sans-serif;
     line-height: 1.6;
+}
 
-   
+.img-and-text {
+    display: flex;
+    gap: 50px;
 }
 
 .book-image {
@@ -33,3 +34,22 @@
     text-shadow: 2px 2px lightgrey;
 }
 
+.recom-div {
+    margin-top: 50px;
+}
+
+.recom-all {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.recom-one {
+    text-align: center;
+    width: 150px;
+    font-weight: 600;
+}
+
+.recom-one img {
+    width: 150px;
+}

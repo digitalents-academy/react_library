@@ -52,8 +52,21 @@ const Form = () => {
               <input type='text' id="image" name='image' required />
             </div>
             <div className="specific--form--div">
-              <label className='image__and__genre' htmlFor='genre'> Genre </label>
-              <input type='text' id="genre" name='genre' required />
+              <label for='genre' className='image__and__genre' htmlFor='genre'> Genre </label>
+              <select name='genres' id='genre'>
+                <option value=''>Select a Genre</option>
+                <option value='Non Fiction'>Non Fiction</option>
+                <option value='Biography'>Biography</option>
+                <option value='Hobbies'>Hobbies</option>
+                <option value='Self Improvement'>Self Improvement</option>
+                <option value='Fantasy'>Fantasy</option>
+                <option value='Thriller'>Thriller</option>
+                <option value='Romance'>Romance</option>
+                <option value='Horror'>Horror</option>
+                <option value='Philosophy'>Philosophy</option>
+                <option value='Sci-Fi'>Sci-Fi</option>
+              </select>
+              {/* <input type='text' id="genre" name='genre' required /> */}
             </div>
             <div className="specific--form--div">
               <label className='releaseYear' htmlFor='releaseYear'> Released </label>
