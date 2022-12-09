@@ -4,7 +4,7 @@ const userRouter = require("express").Router();
 const User = require("../models/user");
 
 userRouter.post("/", async (request, response) => {
-  const { email, password } = request.body;
+  const { email, password, admin } = request.body;
   const existingUser = await User.findOne({ email });
   if (password.length < 4) {
     console.log("here");
@@ -23,6 +23,7 @@ userRouter.post("/", async (request, response) => {
   const user = new User({
     email,
     passwordHash,
+    admin: admin || false,
   });
 
   const savedUser = await user.save();
