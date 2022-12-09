@@ -55,11 +55,13 @@ bookRouter.get("/:id", async (request, response) => {
 // PUT (Update book with loan status and loaner Id)
 bookRouter.put("/:id", async (request, response, next) => {
   const body = request.body;
+
   const user = await User.findById(body.userId);
 
   const book = {
     loanStatus: body.loanStatus,
     loaner: user._id,
+
   };
 
   Book.findByIdAndUpdate(request.params.id, book)
@@ -69,8 +71,10 @@ bookRouter.put("/:id", async (request, response, next) => {
     .catch((error) => next(error));
 
   // Add book to user.loaned array
+
   user.loaned = user.loaned.concat(request.params.id);
   await user.save();
+
 });
 
 bookRouter.delete("/:id", async (request, response) => {
