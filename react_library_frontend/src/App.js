@@ -1,7 +1,7 @@
-import Form from "./components/form";
 import Header from "./components/header";
 import Search from "./components/Search";
 import BookPage from "./components/BookPage";
+import Admin from "./components/Admin";
 import service from "./service/books";
 import { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -40,15 +40,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={
             <div>
-              <Form />
-                <div style={{display: 'flex'}}>
-                  <LoginForm setUser={setUser} />
-                  <RegisterForm />
-                </div>
+              <div style={{display: 'flex'}}>
+                <LoginForm setUser={setUser} />
+                <RegisterForm />
+              </div>
               <Search books={books} />
             </div>
         }/>
         <Route path="/:bookId" element={ <BookPage books={books} /> }/>
+        <Route path="/admin" element={ <Admin books={books} /> }/>
       </Routes>
     </Router>
   )
