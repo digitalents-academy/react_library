@@ -7,9 +7,9 @@ const jwt = require("jsonwebtoken");
 // POST (Create book)
 bookRouter.post("/", async (request, response, next) => {
   const authorization = request.get("authorization");
-  console.log(authorization.substring(7));
+  console.log("auth: ", authorization);
   const body = request.body;
-  const user = jwt.verify(authorization.substring(7), process.env.SECRET);
+  const user = jwt.verify(authorization, process.env.SECRET);
 
   console.log(user);
   if (!user.admin) {
@@ -74,6 +74,7 @@ bookRouter.put("/:id", async (request, response, next) => {
 });
 
 bookRouter.delete("/:id", async (request, response) => {
+  console.log("backend");
   await Book.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });

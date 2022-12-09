@@ -4,10 +4,10 @@ GET http://localhost:3003/api/books/638494d557641ab9279b9995
 ###
 POST http://localhost:3003/api/books/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmlnaHRAZ21haWwuY29tIiwiaWQiOiI2MzkxY2I4Y2QzZDhlMTNmOWY4MWRkNGMiLCJhZG1pbiI6ZmFsc2UsImlhdCI6MTY3MDQ5OTIzMH0.kqEOxV00MqmuoQUAyHbk34yOgrzGEc_KtbCkpQgvdNI
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsImlkIjoiNjM5MWMxODllNGI1M2UyMWVjNzRjM2YwIiwiYWRtaW4iOnRydWUsImlhdCI6MTY3MDUwMzkyMn0.h_QSa8myuuLqC8605HcgbRU29Z15Yer9nokKc5znns4
 
 {
-"title": "test3",
+"title": "test4",
 "author": "tester",
 "genre": "test"
 }
