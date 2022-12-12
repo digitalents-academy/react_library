@@ -3,3 +3,27 @@
     font-family: 'Raleway', sans-serif;
     line-height: 1.6;
 }
+
+a {
+    text-decoration: none;
+}
+
+.back-button {
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
+    background-color: white;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.back-button:hover {
+    cursor: pointer;
+}
