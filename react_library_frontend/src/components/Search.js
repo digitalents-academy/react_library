@@ -32,7 +32,8 @@ function Search({ books }) {
                 <div className="filter-by-genre">
                     <select onChange={searchHandler} name="genres" id="genres">
                         <option value=""> Filter by Genre </option>
-                        {genres.map((genre) => <option key={genre}> {capitalize(genre)} </option> )}
+                        {genres.map((genre) => <option key={genre}> {genre} </option>)}
+                        {/* {genres.map((genre) => <option key={genre}> {capitalize(genre)} </option> )} */}
                     </select>
                 </div>
             </div>

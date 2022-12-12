@@ -56,11 +56,14 @@ bookRouter.get("/:id", async (request, response) => {
 bookRouter.put("/:id", async (request, response, next) => {
   const body = request.body;
 
+
   const user = await User.findById(body.userId);
 
   const book = {
     loanStatus: body.loanStatus,
     loaner: user._id,
+
+
 
   };
 
