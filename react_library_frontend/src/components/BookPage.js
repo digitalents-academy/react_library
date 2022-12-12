@@ -22,6 +22,10 @@ function BookPage( {books} ) {
     
     return (
         <div className='book-page'>
+            <Link to="/">
+                <button className="back-button"><ion-icon name="arrow-back-outline"></ion-icon> Back</button>
+            </Link>
+            
             <div className='img-and-text'>
                 <img className='book-image' src={book.img} alt='book cover'/>
                 <div className='book-text'>

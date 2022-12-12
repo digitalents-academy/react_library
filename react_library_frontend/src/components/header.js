@@ -1,10 +1,12 @@
+import React from "react"
+import { Link } from "react-router-dom"
 
-const Header = () => {
-    
+const Header = ( {user} ) => {
+
     return (
-        <div>
-        <h1>Digitalents Academy's Library</h1>
-        
+        <div className='header'>
+            <h1>Digitalents Academy's Library</h1>
+            {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
         </div>
     )
 }
