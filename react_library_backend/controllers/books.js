@@ -2,10 +2,19 @@ const express = require("express");
 const bookRouter = express.Router();
 const Book = require("../models/book.js");
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 // POST (Create book)
-bookRouter.post("/", (request, response, next) => {
+bookRouter.post("/", async (request, response, next) => {
+  const authorization = request.get("authorization");
+  console.log("auth: ", authorization);
   const body = request.body;
+  const user = jwt.verify(authorization, process.env.SECRET);
+
+  console.log(user);
+  if (!user.admin) {
+    return response.status(401).json({ error: "no admin rights" });
+  }
   const book = new Book({
     title: body.title,
     author: body.author,
@@ -46,25 +55,33 @@ bookRouter.get("/:id", async (request, response) => {
 // PUT (Update book with loan status and loaner Id)
 bookRouter.put("/:id", async (request, response, next) => {
   const body = request.body;
-  const user = await User.findById(body.loaner._id)
+
+
+  const user = await User.findById(body.userId);
 
   const book = {
     loanStatus: body.loanStatus,
-    // loaner:{_id: user._id, email: user.email}
+    loaner: user._id,
+
+
+
   };
-  
+
   Book.findByIdAndUpdate(request.params.id, book)
-  .then((updatedBook) => {
-    response.json(updatedBook);
-  })
-  .catch((error) => next(error));
-  
+    .then((updatedBook) => {
+      response.json(updatedBook);
+    })
+    .catch((error) => next(error));
+
   // Add book to user.loaned array
-  user.loaned = user.loaned.concat(request.params.id)
-  await user.save()
+
+  user.loaned = user.loaned.concat(request.params.id);
+  await user.save();
+
 });
 
 bookRouter.delete("/:id", async (request, response) => {
+  console.log("backend");
   await Book.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
