@@ -5,8 +5,8 @@ const Header = ( {user} ) => {
 
 
     
-    // Check if user is admin
-    // Only display Admin link to admin user
+    // Check if user.admin true
+    // Hide Admin link if admin false
     
     return (
         <div className='header'>
