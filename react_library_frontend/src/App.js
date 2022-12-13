@@ -44,7 +44,7 @@ const App = () => {
                 <LoginForm setUser={setUser} />
                 <RegisterForm />
               </div>
-              <Search books={books} />
+              <Search books={books} user={user} />
             </div>
         }/>
         <Route path="/:bookId" element={ <BookPage books={books} /> }/>

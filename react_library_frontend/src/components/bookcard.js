@@ -2,21 +2,24 @@ import service from "../service/books";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const BookCard = ({ filteredBooks }) => {
+const BookCard = ({ filteredBooks, user }) => {
   return (
     <div className="bookCardContainer">
-      
+
         {filteredBooks.map((book) => {
           return (
             <React.Fragment key={book.id}>
               <div className="bookCard">
                   <div className="bookCard__title">
                  
-                <img
-                  className="bookCard__deleteIcon"
-                  src="./images/icon-close.svg"
-                  onClick={() => service.deleteBook(book.id)}
-                />
+                    {user.admin && 
+                      <img
+                        className="bookCard__deleteIcon"
+                        src="./images/icon-close.svg"
+                        onClick={() => service.deleteBook(book.id)}
+                      />
+                    }
+
                   </div>
 
                   <div className="imageAndContent">
