@@ -55,15 +55,18 @@ const LoginForm = (props) => {
         <button type="submit" className="login--button">
           Login
         </button>
-        <button
+     
+      </form>
+      <button
           onClick={() => {
             localStorage.clear();
-            window.location.reload(false);
+            props.setUser("");
+            setEmail("");
+            setPassword("");
           }}
         >
           logout
         </button>
-      </form>
     </div>
   );
 };
