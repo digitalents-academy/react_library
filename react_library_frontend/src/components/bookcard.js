@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const BookCard = ({ filteredBooks, user }) => {
+
   return (
     <div className="bookCardContainer">
         {filteredBooks.map((book) => {

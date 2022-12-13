@@ -23,7 +23,7 @@ function BookPage( {books} ) {
     return (
         <div className='book-page'>
             <Link to="/">
-                <button className="back-button"><ion-icon name="arrow-back-outline"></ion-icon> Back</button>
+                <button className="back-button"><ion-icon name="arrow-back-outline"></ion-icon> Back to home page </button>
             </Link>
             
             <div className='img-and-text'>
