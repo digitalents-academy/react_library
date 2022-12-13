@@ -55,6 +55,14 @@ const LoginForm = (props) => {
         <button type="submit" className="login--button">
           Login
         </button>
+        <button
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload(false);
+          }}
+        >
+          logout
+        </button>
       </form>
     </div>
   );

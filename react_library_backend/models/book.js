@@ -18,7 +18,7 @@ const bookSchema = new mongoose.Schema({
   loaner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-  }
+  },
 });
 
 bookSchema.set("toJSON", {
