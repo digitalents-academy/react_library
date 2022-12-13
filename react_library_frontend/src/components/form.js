@@ -65,7 +65,7 @@ const Form = () => {
             <div className="specific--form--div">
 
 
-              <label for='genre' className='image__and__genre' htmlFor='genre'> Genre </label>
+              <label  className='image__and__genre' htmlFor='genre'> Genre </label>
               <select name='genres' id='genre'>
                 <option value=''>Select a Genre</option>
                 <option value='Non Fiction'>Non Fiction</option>
