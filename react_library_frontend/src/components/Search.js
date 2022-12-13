@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import BookCard from './bookcard';
 
-function Search({ books }) {
+function Search({ books, user }) {
 
     const [searchInput, setSearchInput] = useState("");
 
@@ -19,8 +19,6 @@ function Search({ books }) {
 
     const genres = [...new Set(books.map((book) => book.genre))]
 
-    const capitalize = (string) => string[0].toUpperCase() + string.slice(1)
-
     return (
         <div>
             <div className="search-and-filter">
@@ -28,16 +26,15 @@ function Search({ books }) {
                     <ion-icon name="search-outline"></ion-icon>
                     <input onChange={searchHandler} name="search-input" placeholder="Search for a book..."></input>
                 </div>
-
+                
                 <div className="filter-by-genre">
                     <select onChange={searchHandler} name="genres" id="genres">
                         <option value=""> Filter by Genre </option>
                         {genres.map((genre) => <option key={genre}> {genre} </option>)}
-                        {/* {genres.map((genre) => <option key={genre}> {capitalize(genre)} </option> )} */}
                     </select>
                 </div>
             </div>
-            <BookCard filteredBooks={filteredBooks}/>
+            <BookCard filteredBooks={filteredBooks} user={user}/>
         </div>
     )
 }
