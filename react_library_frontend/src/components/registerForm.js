@@ -1,10 +1,19 @@
-
+import userService from "../service/users";
 
 const RegisterForm = () => {
 
     const handleRegister = (e) => {
         e.preventDefault()
-        console.log("Register Daniel");
+
+        const newUser = {
+            email: e.target.register__email.value,
+            password: e.target.register__password.value
+        }
+
+        userService.createNewUser(newUser);
+        
+        e.target.register__email.value= "";
+        e.target.register__password.value= "";
     }
 
     return (

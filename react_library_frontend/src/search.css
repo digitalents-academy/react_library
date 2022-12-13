@@ -5,7 +5,7 @@ Weights: 100, 200, 300, 400
 
 .search-and-filter {
     height: 100px;
-    width: 100%;
+    margin: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -13,7 +13,6 @@ Weights: 100, 200, 300, 400
 
 .search-bar {
     width: 50%;
-    margin: 20px;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
     border-radius: 10px;
@@ -34,7 +33,6 @@ input[name="search-input"]::placeholder {
 }
 
 .filter-by-genre select {
-    margin: 20px;
     padding: 20px;
     border: none;
     outline: none;
