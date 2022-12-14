@@ -1,6 +1,8 @@
 import service from "../service/books";
 import React from "react";
 import { Link } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const BookCard = ({ filteredBooks, user }) => {
 
@@ -17,12 +19,19 @@ const BookCard = ({ filteredBooks, user }) => {
                       <h1>{book.title}</h1>
                       <Link to={"/" + book.id} style={{textDecoration: 'none'}}> <h2 className="book--link"> More Info </h2> </Link>
 
-                      {/* DELETE BUTTON */}
+                      {/* Delete button & confirm message */}
                       {user.admin && 
                         <img
                           className="bookCard__deleteIcon"
                           src="./images/icon-close.svg"
-                          onClick={() => service.deleteBook(book.id)}/>
+                          onClick={() => confirmAlert({
+                            title: 'Are you sure you want to delete this book?',
+                            buttons: [
+                              { label: 'Yes', onClick: () => service.deleteBook(book.id) },
+                              { label: 'No', onClick: () => console.log('Not deleting') }
+                            ]
+                          })}
+                        />
                       }
                     </div>
                     
