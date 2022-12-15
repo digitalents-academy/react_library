@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+ 
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -26,16 +27,18 @@ const LoginForm = (props) => {
       console.error(exception);
       toast.error("Incorrect email or password");
     }
+    
   };
 
   return (
-    <div>
-      <form className="login--form" onSubmit={handleLogin}>
+    <div className="loginFormContainer">
+      <form className="login--form" onSubmit={handleLogin} >
         <div className="email--input">
+          
           <label htmlFor="email" className="email">
             email
           </label>
-          <input
+          <input  
             type="email"
             name="email"
             id="email"
@@ -54,6 +57,7 @@ const LoginForm = (props) => {
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           ></input>
+         
         </div>
         <button type="submit" className="login--button">
           Login
@@ -68,9 +72,14 @@ const LoginForm = (props) => {
             setPassword("");
             toast.info("Logged out");
           }}
-      > 
-        Logout
-      </button>
+ 
+   
+
+        >
+          logout
+        </button>
+        <p onClick={() => props.loginOrRegister()}>sign up</p>
+
     </div>
   );
 };
