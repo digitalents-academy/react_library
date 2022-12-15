@@ -56,7 +56,7 @@ bookRouter.get("/:id", async (request, response) => {
 //return book
 bookRouter.put("/return/:id", async (request, response, next) => {
   const authorization = request.get("authorization");
-  const user = jwt.verify(authorization, process.env.SECRET);
+  let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
   if (databaseBook.loaners.includes(user.id)) {
@@ -68,6 +68,9 @@ bookRouter.put("/return/:id", async (request, response, next) => {
         response.json(updatedBook);
       })
       .catch((error) => next(error));
+    user = await User.findById(user.id);
+    user.loaned = user.loaned.remove(request.params.id);
+    await user.save();
   } else {
     response.status(444).end();
   }
@@ -76,7 +79,7 @@ bookRouter.put("/return/:id", async (request, response, next) => {
 //loan book
 bookRouter.put("/loan/:id", async (request, response, next) => {
   const authorization = request.get("authorization");
-  const user = jwt.verify(authorization, process.env.SECRET);
+  let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
   if (
@@ -92,6 +95,10 @@ bookRouter.put("/loan/:id", async (request, response, next) => {
         response.json(updatedBook);
       })
       .catch((error) => next(error));
+    user = await User.findById(user.id);
+
+    user.loaned = user.loaned.concat(request.params.id);
+    await user.save();
   } else {
     response.status(444).end();
   }
