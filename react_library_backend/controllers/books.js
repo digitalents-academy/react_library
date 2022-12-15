@@ -53,34 +53,48 @@ bookRouter.get("/:id", async (request, response) => {
   }
 });
 
-// PUT (Update book with loan status and loaner Id)
-bookRouter.put("/:id", async (request, response, next) => {
-  const body = request.body;
+//return book
+bookRouter.put("/return/:id", async (request, response, next) => {
   const authorization = request.get("authorization");
-
   const user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
-  if (databaseBook.loaners.length < databaseBook.copies) {
+  if (databaseBook.loaners.includes(user.id)) {
     let newBook = databaseBook;
-    // newBook.loaners = databaseBook.loaners.push(user);
-    // console.log(newBook);
+    newBook.loaners = databaseBook.loaners.remove(user.id);
+    console.log(newBook);
+    Book.findByIdAndUpdate(request.params.id, newBook)
+      .then((updatedBook) => {
+        response.json(updatedBook);
+      })
+      .catch((error) => next(error));
+  } else {
+    response.status(444).end();
   }
-  // const newBook = {
-  //   loanStatus: body.loanStatus,
-  //   loaner: user._id,
-  // };
+});
 
-  // Book.findByIdAndUpdate(request.params.id, book)
-  //   .then((updatedBook) => {
-  //     response.json(updatedBook);
-  //   })
-  //   .catch((error) => next(error));
+//loan book
+bookRouter.put("/:id", async (request, response, next) => {
+  const authorization = request.get("authorization");
+  const user = jwt.verify(authorization, process.env.SECRET);
+  const databaseBook = await Book.findById(request.params.id);
 
-  // // Add book to user.loaned array
+  if (
+    databaseBook.loaners.length < databaseBook.copies &&
+    !databaseBook.loaners.includes(user.id)
+  ) {
+    let newBook = databaseBook;
+    newBook.loaners = databaseBook.loaners.push(user.id);
+    console.log(newBook);
 
-  // user.loaned = user.loaned.concat(request.params.id);
-  // await user.save();
+    Book.findByIdAndUpdate(request.params.id, newBook)
+      .then((updatedBook) => {
+        response.json(updatedBook);
+      })
+      .catch((error) => next(error));
+  } else {
+    response.status(444).end();
+  }
 });
 
 bookRouter.delete("/:id", async (request, response) => {
