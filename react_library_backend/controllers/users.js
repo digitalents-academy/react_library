@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const { request, response } = require("express");
 const userRouter = require("express").Router();
 const User = require("../models/user");
+const jwt = require("jsonwebtoken");
 
 userRouter.post("/", async (request, response) => {
   const { email, password, admin } = request.body;
@@ -32,7 +33,12 @@ userRouter.post("/", async (request, response) => {
 });
 
 userRouter.get("/", async (request, response) => {
-  console.log("asd");
+  const authorization = request.get("authorization");
+  const user = jwt.verify(authorization, process.env.SECRET);
+  if (!user.admin) {
+    return response.status(401).json({ error: "no admin rights" });
+  }
+
   const users = await User.find({}).populate("loaned", {
     title: 1,
     author: 1,
@@ -43,7 +49,12 @@ userRouter.get("/", async (request, response) => {
 
 // Get user by ID
 userRouter.get("/:id", async (request, response) => {
-  const user = await User.findById(request.params.id);
+  const authorization = request.get("authorization");
+  console.log(authorization);
+  let user = jwt.verify(authorization, process.env.SECRET);
+  if (!user.admin || request.params.id !== user.id) {
+    return response.status(401).json({ error: "no rights" });
+  }
   if (user) {
     response.json(user.toJSON());
   } else {
