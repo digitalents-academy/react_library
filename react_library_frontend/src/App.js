@@ -12,6 +12,8 @@ import "./form.css";
 import "./bookcard.css";
 import "./search.css";
 import "./app.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [books, setBooks] = useState([]);
@@ -50,6 +52,13 @@ const App = () => {
         <Route path="/:bookId" element={ <BookPage books={books} /> }/>
         <Route path="/admin" element={ <Admin books={books} /> }/>
       </Routes>
+      <ToastContainer 
+        autoClose={2000}
+        hideProgressBar
+        closeOnClick={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+      />
     </Router>
   )
 }

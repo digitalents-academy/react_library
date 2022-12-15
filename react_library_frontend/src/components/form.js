@@ -1,6 +1,6 @@
 import React from "react";
-import axios from "axios";
 import service from "../service/books";
+import { toast } from 'react-toastify';
 
 const Form = () => {
   function handleCreateNew(e) {
@@ -16,6 +16,7 @@ const Form = () => {
     };
 
     service.create(newBook);
+    toast.success("New book added");
 
     // Clear input field after submit
     e.target.title.value = "";
