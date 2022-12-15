@@ -3,6 +3,7 @@ const bookRouter = express.Router();
 const Book = require("../models/book.js");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const { request, response } = require("express");
 
 // POST (Create book)
 bookRouter.post("/", async (request, response, next) => {
@@ -21,7 +22,6 @@ bookRouter.post("/", async (request, response, next) => {
     genre: body.genre,
     releaseYear: body.releaseYear,
     description: body.description,
-    loanStatus: body.loanStatus || false,
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
@@ -74,7 +74,7 @@ bookRouter.put("/return/:id", async (request, response, next) => {
 });
 
 //loan book
-bookRouter.put("/:id", async (request, response, next) => {
+bookRouter.put("/loan/:id", async (request, response, next) => {
   const authorization = request.get("authorization");
   const user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
@@ -95,6 +95,34 @@ bookRouter.put("/:id", async (request, response, next) => {
   } else {
     response.status(444).end();
   }
+});
+
+//change book
+bookRouter.put("/:id", async (request, response) => {
+  const authorization = request.get("authorization");
+  console.log("auth: ", authorization);
+  const user = jwt.verify(authorization, process.env.SECRET);
+
+  console.log(user);
+  if (!user.admin) {
+    return response.status(401).json({ error: "no admin rights" });
+  }
+  body = request.body;
+  const newBook = {
+    title: body.title,
+    author: body.author,
+    genre: body.genre,
+    description: body.description,
+    releaseYear: body.releaseYear,
+    img: body.img,
+    tags: body.tags,
+    copies: body.copies,
+  };
+  Book.findByIdAndUpdate(request.params.id, newBook)
+    .then((updatedBook) => {
+      response.json(updatedBook);
+    })
+    .catch((error) => next(error));
 });
 
 bookRouter.delete("/:id", async (request, response) => {
