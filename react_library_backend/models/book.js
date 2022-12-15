@@ -6,7 +6,6 @@ const bookSchema = new mongoose.Schema({
   genre: String,
   description: String,
   releaseYear: String,
-  loanStatus: Boolean,
   img: String,
   tags: Array,
   copies: Number,
