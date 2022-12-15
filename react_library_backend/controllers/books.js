@@ -22,7 +22,6 @@ bookRouter.post("/", async (request, response, next) => {
     genre: body.genre,
     releaseYear: body.releaseYear,
     description: body.description,
-    loanStatus: body.loanStatus || false,
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
