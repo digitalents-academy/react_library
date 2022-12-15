@@ -1,6 +1,10 @@
 import userService from "../service/users";
+
+import { toast } from 'react-toastify';
+
 import PasswordStrengthBar from 'react-password-strength-bar';
 import { useState } from "react";
+
 
 
 const RegisterForm = (props) => {
@@ -19,6 +23,7 @@ const RegisterForm = (props) => {
         
         e.target.register__email.value= "";
         e.target.register__password.value= "";
+        toast.success("Register successful");
     }
 
     return (
