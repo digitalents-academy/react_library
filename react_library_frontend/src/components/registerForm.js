@@ -1,4 +1,5 @@
 import userService from "../service/users";
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
 
@@ -14,6 +15,7 @@ const RegisterForm = () => {
         
         e.target.register__email.value= "";
         e.target.register__password.value= "";
+        toast.success("Register successful");
     }
 
     return (

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import loginService from "../service/login";
 import service from "../service/books";
+import { toast } from 'react-toastify';
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -20,8 +21,10 @@ const LoginForm = (props) => {
       props.setUser(user);
       setEmail("");
       setPassword("");
+      toast.success("Logged in");
     } catch (exception) {
       console.error(exception);
+      toast.error("Incorrect email or password");
     }
   };
 
@@ -55,18 +58,19 @@ const LoginForm = (props) => {
         <button type="submit" className="login--button">
           Login
         </button>
-     
       </form>
+
       <button
           onClick={() => {
             localStorage.clear();
             props.setUser("");
             setEmail("");
             setPassword("");
+            toast.info("Logged out");
           }}
-        >
-          logout
-        </button>
+      > 
+        Logout
+      </button>
     </div>
   );
 };

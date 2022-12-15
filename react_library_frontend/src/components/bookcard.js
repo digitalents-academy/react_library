@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
+import { toast } from 'react-toastify';
 
 const BookCard = ({ filteredBooks, user }) => {
   return (
@@ -34,7 +35,10 @@ const BookCard = ({ filteredBooks, user }) => {
                             buttons: [
                               {
                                 label: "Yes",
-                                onClick: () => service.deleteBook(book.id),
+                                onClick: () => {
+                                  service.deleteBook(book.id);
+                                  toast.success("Book deleted");
+                                }
                               },
                               {
                                 label: "No",
