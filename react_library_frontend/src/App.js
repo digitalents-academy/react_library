@@ -54,7 +54,7 @@ const App = () => {
       </Routes>
       <ToastContainer 
         autoClose={2000}
-        
+        pauseOnHover={false}
         closeOnClick={false}
         pauseOnFocusLoss={false}
         draggable={false}

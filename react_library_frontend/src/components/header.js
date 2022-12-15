@@ -10,8 +10,7 @@ import "../header.css";
 const Header = ( {user, setUser} ) => {
 
 
-    const [popup, setPopup] = useState(false);
-    const [isNewUser, setIsNewUser] = useState(false);
+  
 
     const [loginWindow, setLoginWindow] = useState(false);
     const [registerWindow, setRegisterWindow] = useState(false);
@@ -39,7 +38,7 @@ const Header = ( {user, setUser} ) => {
     return (
         <div className='header'>
             <h1>Digitalents Academy's Library</h1>
-           { user === "" ? <p onClick={showLoginWindow}>Login</p> : 
+           { user === "" ? <p className="frontPageLoginButton" onClick={showLoginWindow}>Login</p> : 
                  <button
                  onClick={() => {
                    localStorage.clear();
@@ -54,8 +53,8 @@ const Header = ( {user, setUser} ) => {
 
             {
            loginWindow ? <div onClick={(e)=>showLogin(e)} className="popupBackground"> <div className="loginRegisterWindowContainer">
-               <p onClick={showLoginWindow}>Close</p>
-            { !registerWindow ? <LoginForm loginOrRegister={loginOrRegister} setUser={setUser} /> : <RegisterForm loginOrRegister={loginOrRegister} />}
+               <p className="closeLoginRegisterWindow" onClick={showLoginWindow}>X</p>
+            { !registerWindow ? <LoginForm setLoginWindow={setLoginWindow} loginOrRegister={loginOrRegister} setUser={setUser} /> : <RegisterForm setLoginWindow={setLoginWindow} loginOrRegister={loginOrRegister} />}
             </div> 
             </div>
             : null

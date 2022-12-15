@@ -2,6 +2,7 @@ import { useState } from "react";
 import loginService from "../service/login";
 import service from "../service/books";
 import { toast } from 'react-toastify';
+import "../header.css";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -23,6 +24,7 @@ const LoginForm = (props) => {
       setEmail("");
       setPassword("");
       toast.success("Logged in");
+      props.setLoginWindow(false)
     } catch (exception) {
       console.error(exception);
       toast.error("Incorrect email or password");
@@ -32,11 +34,12 @@ const LoginForm = (props) => {
 
   return (
     <div className="loginFormContainer">
+      <h2>Login</h2>
       <form className="login--form" onSubmit={handleLogin} >
-        <div className="email--input">
+        <div className="email--input input--container">
           
           <label htmlFor="email" className="email">
-            email
+            Email:
           </label>
           <input  
             type="email"
@@ -46,9 +49,9 @@ const LoginForm = (props) => {
             onChange={({ target }) => setEmail(target.value)}
           ></input>
         </div>
-        <div className="password--input">
+        <div className="password--input input--container">
           <label htmlFor="password" className="password">
-            password
+            Password:
           </label>
           <input
             type="password"
@@ -59,13 +62,13 @@ const LoginForm = (props) => {
           ></input>
          
         </div>
-        <button type="submit" className="login--button">
+        <button type="submit" className="login--button submit--button">
           Login
         </button>
       </form>
 
    
-        <p onClick={() => props.loginOrRegister()}>sign up</p>
+        <p className="signUp signButton" onClick={() => props.loginOrRegister()}>sign up</p>
 
     </div>
   );

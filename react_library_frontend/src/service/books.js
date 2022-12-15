@@ -34,7 +34,7 @@ const updateLoanStatus = (id) => {
   const config = {
     headers: { Authorization: token },
   };
-  const request = axios.put(`${baseUrl}/${id}`, config);
+  const request = axios.put(`${baseUrl}/loan/${id}`, config);
 
   return request.then((response) => response.data);
 };
