@@ -30,8 +30,11 @@ const deleteBook = (id) => {
   return request.then((response) => response.data);
 };
 
-const updateLoanStatus = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject);
+const updateLoanStatus = (id) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const request = axios.put(`${baseUrl}/${id}`, config);
 
   return request.then((response) => response.data);
 };

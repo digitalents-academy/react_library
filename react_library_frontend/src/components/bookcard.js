@@ -11,6 +11,7 @@ const BookCard = ({ filteredBooks, user }) => {
         return (
           <React.Fragment key={book.id}>
             <div className="bookCard">
+
               <div className="imageAndContent">
                 <img className="bookCard__image" src={book.img} />
                 <div className="book__content">
@@ -18,6 +19,7 @@ const BookCard = ({ filteredBooks, user }) => {
                     <h1>{book.title}</h1>
                     <Link to={"/" + book.id} style={{ textDecoration: "none" }}>
                       {" "}
+
                       <h2 className="book--link"> More Info </h2>{" "}
                     </Link>
 
