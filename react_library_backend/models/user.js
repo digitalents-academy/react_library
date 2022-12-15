@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Book",
+      date: Date,
     },
   ],
 });

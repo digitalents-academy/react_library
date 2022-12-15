@@ -9,16 +9,19 @@ const bookSchema = new mongoose.Schema({
   loanStatus: Boolean,
   img: String,
   tags: Array,
+  copies: Number,
   reservations: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
   ],
-  loaner: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
+  loaners: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 bookSchema.set("toJSON", {

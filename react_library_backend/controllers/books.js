@@ -25,6 +25,7 @@ bookRouter.post("/", async (request, response, next) => {
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
+    copies: body.copies,
   });
   book
     .save()
@@ -36,7 +37,7 @@ bookRouter.post("/", async (request, response, next) => {
 
 //get all
 bookRouter.get("/", async (request, response) => {
-  const books = await Book.find({}).populate("loaner", {
+  const books = await Book.find({}).populate("loaners", {
     email: 1,
   });
   response.json(books);
@@ -52,32 +53,48 @@ bookRouter.get("/:id", async (request, response) => {
   }
 });
 
-// PUT (Update book with loan status and loaner Id)
+//return book
+bookRouter.put("/return/:id", async (request, response, next) => {
+  const authorization = request.get("authorization");
+  const user = jwt.verify(authorization, process.env.SECRET);
+  const databaseBook = await Book.findById(request.params.id);
+
+  if (databaseBook.loaners.includes(user.id)) {
+    let newBook = databaseBook;
+    newBook.loaners = databaseBook.loaners.remove(user.id);
+    console.log(newBook);
+    Book.findByIdAndUpdate(request.params.id, newBook)
+      .then((updatedBook) => {
+        response.json(updatedBook);
+      })
+      .catch((error) => next(error));
+  } else {
+    response.status(444).end();
+  }
+});
+
+//loan book
 bookRouter.put("/:id", async (request, response, next) => {
-  const body = request.body;
+  const authorization = request.get("authorization");
+  const user = jwt.verify(authorization, process.env.SECRET);
+  const databaseBook = await Book.findById(request.params.id);
 
+  if (
+    databaseBook.loaners.length < databaseBook.copies &&
+    !databaseBook.loaners.includes(user.id)
+  ) {
+    let newBook = databaseBook;
+    newBook.loaners = databaseBook.loaners.push(user.id);
+    console.log(newBook);
 
-  const user = await User.findById(body.userId);
-
-  const book = {
-    loanStatus: body.loanStatus,
-    loaner: user._id,
-
-
-
-  };
-
-  Book.findByIdAndUpdate(request.params.id, book)
-    .then((updatedBook) => {
-      response.json(updatedBook);
-    })
-    .catch((error) => next(error));
-
-  // Add book to user.loaned array
-
-  user.loaned = user.loaned.concat(request.params.id);
-  await user.save();
-
+    Book.findByIdAndUpdate(request.params.id, newBook)
+      .then((updatedBook) => {
+        response.json(updatedBook);
+      })
+      .catch((error) => next(error));
+  } else {
+    response.status(444).end();
+  }
 });
 
 bookRouter.delete("/:id", async (request, response) => {
