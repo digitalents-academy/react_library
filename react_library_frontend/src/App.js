@@ -5,8 +5,8 @@ import Admin from "./components/Admin";
 import service from "./service/books";
 import { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginForm from "./components/loginForm";
-import RegisterForm from "./components/registerForm";
+
+
 import "./index.css";
 import "./form.css";
 import "./bookcard.css";
@@ -36,13 +36,13 @@ const App = () => {
 
   return (
     <Router>
-      <Header user={user}/>
+      <Header setUser={setUser} user={user}/>
       <Routes>
         <Route path="/" element={
             <div>
               <div style={{display: 'flex'}}>
-                <LoginForm setUser={setUser} />
-                <RegisterForm />
+               
+                
               </div>
               <Search books={books} user={user} />
             </div>

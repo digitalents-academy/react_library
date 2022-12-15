@@ -1,6 +1,11 @@
 import userService from "../service/users";
+import PasswordStrengthBar from 'react-password-strength-bar';
+import { useState } from "react";
 
-const RegisterForm = () => {
+
+const RegisterForm = (props) => {
+
+    const [password, setPassword] = useState('');
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -17,7 +22,7 @@ const RegisterForm = () => {
     }
 
     return (
-        <div>
+        <div className="registerFormContainer">
             <form onSubmit={handleRegister}>
             <div className="register--email--input">
                     <label htmlFor='register__email' className="register__email">email</label>
@@ -29,10 +34,12 @@ const RegisterForm = () => {
                 </div>
                 <div className="register--password--input">
                     <label htmlFor='register__password' className="register__password">password</label>
-                    <input type="password" name="register__password" id="register__password"></input>
+                    <input onChange={({ target }) => setPassword(target.value)} value={password} type="password" name="register__password" id="register__password"></input>
+                   { password.length < 1 ? <> </> : <PasswordStrengthBar password={password} /> }
                 </div>
                 <button type="submit" className="register--button">Register</button>
             </form>
+            <p  onClick={() => props.loginOrRegister()}>sign in</p>
         </div>
     )
 }
