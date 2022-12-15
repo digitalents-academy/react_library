@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import LoginForm from "./loginForm";
 import RegisterForm from "./registerForm";
 import { useState, useEffect} from 'react';
+import { toast } from 'react-toastify';
+
 import "../header.css";
 
 const Header = ( {user, setUser} ) => {
@@ -13,6 +15,7 @@ const Header = ( {user, setUser} ) => {
 
     const [loginWindow, setLoginWindow] = useState(false);
     const [registerWindow, setRegisterWindow] = useState(false);
+
 
       // show login window when clicking in login button
       const showLoginWindow = () => {
@@ -36,7 +39,19 @@ const Header = ( {user, setUser} ) => {
     return (
         <div className='header'>
             <h1>Digitalents Academy's Library</h1>
-            <p onClick={showLoginWindow}>Login</p>
+           { user === "" ? <p onClick={showLoginWindow}>Login</p> : 
+                 <button
+                 onClick={() => {
+                   localStorage.clear();
+                   setUser("");
+                   toast.info("Logged out");
+                 }}
+               >
+                 logout
+               </button>
+           }
+          
+
             {
            loginWindow ? <div onClick={(e)=>showLogin(e)} className="popupBackground"> <div className="loginRegisterWindowContainer">
                <p onClick={showLoginWindow}>Close</p>

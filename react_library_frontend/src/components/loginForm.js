@@ -64,20 +64,7 @@ const LoginForm = (props) => {
         </button>
       </form>
 
-      <button
-          onClick={() => {
-            localStorage.clear();
-            props.setUser("");
-            setEmail("");
-            setPassword("");
-            toast.info("Logged out");
-          }}
- 
    
-
-        >
-          logout
-        </button>
         <p onClick={() => props.loginOrRegister()}>sign up</p>
 
     </div>
