@@ -50,11 +50,12 @@ userRouter.get("/", async (request, response) => {
 // Get user by ID
 userRouter.get("/:id", async (request, response) => {
   const authorization = request.get("authorization");
-  console.log(authorization);
   let user = jwt.verify(authorization, process.env.SECRET);
-  if (!user.admin || request.params.id !== user.id) {
+  console.log(user, request.params.id);
+  if (!user.admin && request.params.id !== user.id) {
     return response.status(401).json({ error: "no rights" });
   }
+  user = await User.findById(request.params.id);
   if (user) {
     response.json(user.toJSON());
   } else {
@@ -63,20 +64,48 @@ userRouter.get("/:id", async (request, response) => {
 });
 
 userRouter.delete("/:id", async (request, response) => {
+  const authorization = request.get("authorization");
+  let user = jwt.verify(authorization, process.env.SECRET);
+  console.log(user, request.params.id);
+  if (!user.admin && request.params.id !== user.id) {
+    return response.status(401).json({ error: "no rights" });
+  }
+
   await User.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
 
 userRouter.put("/:id", (request, response) => {
-  const body = request.body;
+  const authorization = request.get("authorization");
+  let user = jwt.verify(authorization, process.env.SECRET);
+  console.log(user, request.params.id);
+  if (!user.admin && request.params.id !== user.id) {
+    return response.status(401).json({ error: "no rights" });
+  }
 
-  //   const user = {
-  //     email: body.email,
-  //     loaned: body.loaned,
-  //   };
+  const body = request.body;
 
   User.findByIdAndUpdate(request.params.id, { email: body.email }).then(
     (updatedUser) => {
+      response.json(updatedUser);
+    }
+  );
+});
+
+userRouter.put("/admin/:id", (request, response) => {
+  const authorization = request.get("authorization");
+  let user = jwt.verify(authorization, process.env.SECRET);
+  console.log(user, request.params.id);
+  if (!user.admin) {
+    return response.status(401).json({ error: "no admin rights" });
+  }
+
+  const body = request.body;
+  console.log(body);
+
+  User.findByIdAndUpdate(request.params.id, { admin: body.admin }).then(
+    (updatedUser) => {
+      console.log(updatedUser);
       response.json(updatedUser);
     }
   );
