@@ -1,21 +1,176 @@
+.frontPageLoginButton {
+  cursor: pointer;
+}
 
 .popupBackground {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 5;
-    background-color: hsl(0, 0%, 0%, .9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: hsl(0, 0%, 0%, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loginRegisterWindowContainer {
-    margin-top: auto;
-    position: absolute;
-    color: white;
-   /* background-color: black; */
+  
+    box-shadow:
+    /* 0 0 0 10px hsl(138, 97%, 13%), */
+    0 0 0 15px hsl(138, 98%, 25%),
+    0 0 10px 20px hsl(138, 98%, 25%);
+  padding: 1rem;
+  /* border: 2px solid black; */
+  border-radius: 20px; 
+  height: 400px;
+  /* width: 30%; */
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: absolute;
+  color: white;
+  background-color: black;
 }
 
+.closeLoginRegisterWindow {
+  font-size: x-large;
+  align-self: flex-end;
+  text-align: center;
+  width: 2rem;
+  border-radius: 10px;
+  margin-top: 0;
+  margin-right: 1rem;
+  transition: scale 0.3s;
+}
+
+/* .login--button {
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+} */
+
+.closeLoginRegisterWindow,
+.signButton,
+.login--button {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.closeLoginRegisterWindow:hover {
+  scale: 1.1;
+  font-weight: 700;
+  color: green;
+  background-color: black;
+  box-shadow: 3px 3px 7px 1px;
+}
+
+.signButton {
+  width: 30%;
+  text-align: center;
+  border-radius: 20px;
+  transition: scale 0.3s;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.signButton:hover {
+  scale: 1.1;
+  font-weight: 500;
+
+  color: green;
+  background-color: black;
+  box-shadow: 3px 3px 7px 1px;
+}
+
+.submit--button {
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  padding-top: .8em;
+  padding-bottom: .8rem;
+  background-color: white;
+  box-shadow: 3px 3px 7px 1px;
+  width: 50%;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: scale 0.5s;
+}
+
+
+.submit--button:hover {
+  scale: 1.1;
+  background-color: black;
+  color: green;
+  font-weight: 700;
+  /* font-size: larger; */
+  /* text-shadow: blue 1px 1px 1px ; */
+  box-shadow: 3px 3px 7px 1px;
+}
+
+.loginFormContainer,
+.registerFormContainer {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.login--form,
+.register--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90%;
+}
+
+.registerInputAndStrengthBar {
+  display: flex;
+  flex-direction: column;
+}
+
+.input--container {
+  display: flex;
+  justify-content: space-between;
+  color: green;
+  /* box-shadow: 3px 3px 7px 5px; */
+}
+
+.input--container input {
+    height: 30px;
+    background-color: black;
+ border: 2px solid green;
+  border-radius: 20px;
+  color: green;
+}
+
+.input--container input:-webkit-autofill {
+  -webkit-text-fill-color: green !important;
+  -webkit-box-shadow: 0 0 0 10px black inset !important;
+}
+
+.input--container input:focus {
+    outline: none;
+  color: green;
+  border: 1px solid green;
+  box-shadow: 0px 0px 7px 5px;
+}
+
+.notEmpty {
+  background-color: black;
+  color: green;
+  box-shadow: 3px 3px 7px 5px;
+  /* margin-bottom: 2rem; */
+}
+
+/* .input--container input:focus label {
+  color: green;
+  box-shadow: 3px 3px 7px 5px;
+} */
+
+.email--input {
+  margin-bottom: 1em;
+}
