@@ -1,8 +1,3 @@
-/* Fonts
-font-family: 'Raleway', sans-serif;
-Weights: 100, 200, 300, 400 
-*/
-
 .search-and-filter {
     height: 100px;
     margin: 50px;
@@ -29,7 +24,7 @@ input[name="search-input"] {
 
 input[name="search-input"]::placeholder {
     font-family: 'Raleway', sans-serif;
-    color: gray;
+    color: black;
 }
 
 .filter-by-genre select {
@@ -41,4 +36,5 @@ input[name="search-input"]::placeholder {
     /* Adds space right of arrow */
     border-right: 16px solid transparent;
     font-family: 'Raleway', sans-serif;
+    cursor: pointer;
 }
