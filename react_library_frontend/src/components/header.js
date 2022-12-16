@@ -35,7 +35,7 @@ const Header = ( {user, setUser} ) => {
       <img className='header-logo' src="../images/logo-lightmode.png" alt='logo'></img>
       {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
       { user === "" ? 
-        <p className="frontPageLoginButton" onClick={showLoginWindow}>Login</p> 
+        <button className="frontPageLoginButton" onClick={showLoginWindow}>Login</button> 
         : <button
             className='logout-button'
             onClick={() => {
