@@ -15,14 +15,10 @@
 .admin-link {
   color: black;
   text-decoration: none;
+  font-size: 14px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 10px 12px;
   border-radius: 8px;
-}
-
-.admin-link:hover {
-  cursor: pointer;
-  color: lightsteelblue;
 }
 
 .logout-button {
@@ -34,6 +30,11 @@
   cursor: pointer;
   padding: 10px 12px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.admin-link:hover, .logout-button:hover {
+  cursor: pointer;
+  color: lightgray;
 }
 
 .frontPageLoginButton {

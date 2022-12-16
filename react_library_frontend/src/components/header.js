@@ -33,6 +33,7 @@ const Header = ( {user, setUser} ) => {
   return (
     <div className='header'>
       <img className='header-logo' src="../images/logo-lightmode.png" alt='logo'></img>
+      {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
       { user === "" ? 
         <p className="frontPageLoginButton" onClick={showLoginWindow}>Login</p> 
         : <button
@@ -54,9 +55,8 @@ const Header = ( {user, setUser} ) => {
           : <RegisterForm setLoginWindow={setLoginWindow} loginOrRegister={loginOrRegister} />}
         </div> 
       </div>
-      : null
-      }
-      {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
+      : null}
+
     </div>
   )
 }
