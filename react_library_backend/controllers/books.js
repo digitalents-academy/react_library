@@ -7,7 +7,9 @@ const { request, response } = require("express");
 
 // POST (Create book)
 bookRouter.post("/", async (request, response, next) => {
+  console.log(request);
   const authorization = request.get("authorization");
+  console.log(authorization);
   console.log("auth: ", authorization);
   const body = request.body;
   const user = jwt.verify(authorization, process.env.SECRET);
@@ -25,7 +27,7 @@ bookRouter.post("/", async (request, response, next) => {
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
-    copies: body.copies,
+    copies: body.copies || 1,
   });
   book
     .save()
@@ -78,6 +80,7 @@ bookRouter.put("/return/:id", async (request, response, next) => {
 
 //loan book
 bookRouter.put("/loan/:id", async (request, response, next) => {
+  console.log(request);
   const authorization = request.get("authorization");
   let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
