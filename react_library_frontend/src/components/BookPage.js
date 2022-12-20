@@ -19,7 +19,7 @@ function BookPage( {books} ) {
     // Recommended books
     const otherBooks = books.filter((b) => b.id !== book.id)
     const sameAuthorOrGenre = otherBooks.filter((b) => b.author === book.author || b.genre === book.genre)
-    
+
     return (
         <div className='book-page'>
             <Link to="/">
@@ -34,7 +34,10 @@ function BookPage( {books} ) {
                     {book.genre && <p><b> Genre: </b>{book.genre}</p>}
                     {book.releaseYear && <p><b> Released: </b>{book.releaseYear}</p>}
                     {book.description && <p><b> Description: </b>{book.description}</p>}
-                    <p className={book.loanStatus ? 'status-loaned' : 'status-available'}> {book.loanStatus ? "NOT AVAILABLE" : "AVAILABLE"}</p>
+                    {book.loaners?.length < book.copies && <p className='status-available'> AVAILABLE {book.copies-book.loaners.length} / {book.copies} </p>}
+                    {book.loaners?.length >= book.copies && <p className='status-loaned'> NOT AVAILABLE (number of copies loaned: {book.copies}) </p>}
+
+                    {/* Admin only: change number of copies */}
                 </div>
             </div>
 
