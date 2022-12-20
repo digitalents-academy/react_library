@@ -195,7 +195,7 @@
 
 .input--container input:-webkit-autofill {
   -webkit-text-fill-color: green !important;
-  -webkit-box-shadow: 0 0 0 10px black inset !important;
+  box-shadow: 0 0 0 40px black inset !important;
 }
 
 .input--container input:focus {

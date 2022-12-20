@@ -59,21 +59,29 @@ const BookCard = ({ filteredBooks, user }) => {
                     {book.description?.length > 200 ? "..." : null}
                   </p>
                   <p className="bookStatus">
-                    {book.loanStatus ? "Loaned" : "Available"}
+                    {book.loaners[0] ? "Loaned" : "Available"}
                   </p>
+              
+                 {/* checks if the loaner is the same as the user logged in */}
+                 {book.loaners.filter((loaner) => loaner._id === user.id).length > 0 ?
                   <button
+                  className="bookCard__button"
+                  onClick={()=> {service.updateReturnStatus(book.id)}}
+                >
+                 Return
+                </button> : book.loaners.length < book.copies ?  <button
                     className="bookCard__button"
                     onClick={()=> {service.updateLoanStatus(book.id)}}
-                    // onClick={() =>
-                    //   service.updateLoanStatus(book.id, {
-                    //     loanStatus: !book.loanStatus,
-                    //     loaner: {_id: book.loaner._id, email: book.loaner.email}
-                    //   })
-                    // }
                   >
-                    {book.loanStatus ? "Return" : "Loan"}
-                    {/* {console.log(Object.keys(book.loaner).length)}  */}
-                  </button>
+                   Loan
+                  </button> : <button
+                    className="bookCard__button"
+                   
+                  >
+                    Unavailable
+                  </button>} 
+
+    
                 </div>
               </div>
             </div>

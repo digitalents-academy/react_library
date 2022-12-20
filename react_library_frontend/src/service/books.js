@@ -36,7 +36,14 @@ const updateLoanStatus = async (id) => {
   };
   const request = await axios.put(`${baseUrl}/loan/${id}`, {}, config);
 
-  //return request.then((response) => response.data);
 };
 
-export default { getAll, create, deleteBook, updateLoanStatus, setToken };
+const updateReturnStatus = async (id) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const request = await axios.put(`${baseUrl}/return/${id}`, {}, config);
+
+};
+
+export default { getAll, create, deleteBook, updateLoanStatus,updateReturnStatus, setToken };
