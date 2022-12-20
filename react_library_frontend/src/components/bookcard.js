@@ -63,6 +63,7 @@ const BookCard = ({ filteredBooks, user }) => {
                   </p>
                   <button
                     className="bookCard__button"
+                    onClick={()=> {service.updateLoanStatus(book.id)}}
                     // onClick={() =>
                     //   service.updateLoanStatus(book.id, {
                     //     loanStatus: !book.loanStatus,

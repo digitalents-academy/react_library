@@ -1,6 +1,6 @@
 import axios from "axios";
 // import { base } from '../../../react_library_backend/models/book';
-const baseUrl = "http://localhost:3003/api/books/";
+const baseUrl = "http://localhost:3003/api/books";
 
 let token = null;
 
@@ -30,13 +30,13 @@ const deleteBook = (id) => {
   return request.then((response) => response.data);
 };
 
-const updateLoanStatus = (id) => {
+const updateLoanStatus = async (id) => {
   const config = {
     headers: { Authorization: token },
   };
-  const request = axios.put(`${baseUrl}/loan/${id}`, config);
+  const request = await axios.put(`${baseUrl}/loan/${id}`, {}, config);
 
-  return request.then((response) => response.data);
+  //return request.then((response) => response.data);
 };
 
 export default { getAll, create, deleteBook, updateLoanStatus, setToken };

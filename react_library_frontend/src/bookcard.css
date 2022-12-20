@@ -55,6 +55,7 @@
   flex-direction: column;
   visibility: visible;
   justify-content: space-around;
+  width: 100%;
 }
 
 .bookCard:hover .book__content {
