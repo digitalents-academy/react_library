@@ -1,16 +1,50 @@
 .header {
-  margin: 50px 50px 0px;
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
 }
 
-.header-logo {
-  margin-right: auto;
+.navBar {
+  width: 10rem;
+  min-width: 10rem;
+  display: flex;
+  /* flex-direction: row-reverse; */
+  justify-content: space-between;
+  border: 1px solid red;
 }
+
+
+@media screen and (min-width: 480px) {
+  .header {
+    width: 100%;
+    margin: 50px 50px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+  }
+  
+  .header-logo {
+    /* margin-right: auto; */
+    /* float: left; */
+    height: auto;
+    width: 50%;
+    
+  }
+  
+  .navBar {
+    width: 10rem;
+    min-width: 10rem;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    justify-content: space-between;
+    border: 1px solid red;
+  }
+}
+
 
 .admin-link {
   color: black;
@@ -220,3 +254,4 @@
 .email--input {
   margin-bottom: 1em;
 }
+
