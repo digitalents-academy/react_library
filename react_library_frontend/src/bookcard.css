@@ -26,7 +26,7 @@
 
 .bookCard {
   border: 1px solid green;
-  /* min-width: 23rem; */
+  min-width: 23rem;
   position: relative;
   display: flex;
   flex-direction: column;
