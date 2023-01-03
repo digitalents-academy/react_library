@@ -9,7 +9,7 @@
 .search-bar {
     width: 50%;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
     border-radius: 10px;
     
     display: flex;
@@ -31,7 +31,7 @@ input[name="search-input"]::placeholder {
     padding: 20px;
     border: none;
     outline: none;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
     border-radius: 10px;
     /* Adds space right of arrow */
     border-right: 16px solid transparent;

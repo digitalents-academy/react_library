@@ -14,12 +14,54 @@
 .edit-form {
     display: flex;
     flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-input {
-    margin-bottom: 10px;
+ion-icon {
+    color: rgb(83, 83, 83);
+    --ionicon-stroke-width: 16px;
+    cursor: pointer;
+}
+
+.edit-form select {
+    height: 30px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    border: none;
+    outline: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
+    border-radius: 10px;
+    /* Adds space right of arrow */
+    border-right: 16px solid transparent;
+    font-family: 'Raleway', sans-serif;
+    cursor: pointer;
+}
+
+.edit-form input, textarea {
+    font-family: 'Raleway', sans-serif;
+    padding: 15px;
+    margin-bottom: 15px;
     border-radius: 8px;
     height: 25px;
     border: none;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
+    outline: none;
+}
+
+textarea {
+    height: 70px;
+}
+
+.edit-form button {
+    height: 30px;
+    width: 80px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    background-color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
+    cursor: pointer;
 }

@@ -21,9 +21,10 @@ function BookPage( {books, user} ) {
     const otherBooks = books.filter((b) => b.id !== book.id)
     const sameAuthorOrGenre = otherBooks.filter((b) => b.author === book.author || b.genre === book.genre)
 
-    // Edit pop up window
-    const [editWindow, setEditWindow] = useState(false);
+    // Show / Hide edit form
+    const [editWindow, setEditWindow] = useState(false)
     const showEditWindow = () => setEditWindow(true)
+    const hideEditWindow = () => setEditWindow(false)
 
     return (
         <div className='book-page'>
@@ -36,9 +37,9 @@ function BookPage( {books, user} ) {
                 {user.admin && <button className="edit-button" onClick={showEditWindow}> Edit </button>}
             </div>
 
-            {editWindow && <EditBookForm />}
+            {editWindow && <EditBookForm hideEditWindow={hideEditWindow} book={book} />}
 
-            <div className='img-and-text'>
+            <div className='img-and-text' style={{ display: (editWindow && 'none') }}>
                 <img className='book-image' src={book.img} alt='book cover'/>
                 <div className='book-text'>
                     <h1> {book.title} </h1>
@@ -52,7 +53,7 @@ function BookPage( {books, user} ) {
             </div>
 
             {sameAuthorOrGenre.length > 0 && 
-                <div className="recom-div">
+                <div className="recom-div" style={{ display: (editWindow && 'none') }}>
                     <h2>Recommended books</h2>
                     <div className='recom-all'>
                         {sameAuthorOrGenre.map((recomBook) => (
