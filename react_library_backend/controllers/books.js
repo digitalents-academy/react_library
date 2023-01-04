@@ -90,7 +90,18 @@ bookRouter.put("/loan/:id", async (request, response, next) => {
     !databaseBook.loaners.includes(user.id)
   ) {
     let newBook = databaseBook;
-    newBook.loaners = databaseBook.loaners.push(user.id);
+    let loanDate = new Date();
+    let returnDate = new Date();
+    returnDate.setDate(returnDate.getDate() + 28);
+    let loan = {
+      user: user.id,
+      loanDate: loanDate,
+      returnDate: returnDate,
+    };
+    console.log(loan);
+
+    newBook.loaners = databaseBook.loaners.push(loan);
+    console.log("asd");
     console.log(newBook);
 
     Book.findByIdAndUpdate(request.params.id, newBook)

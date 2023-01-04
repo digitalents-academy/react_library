@@ -46,4 +46,11 @@ const updateReturnStatus = async (id) => {
 
 };
 
-export default { getAll, create, deleteBook, updateLoanStatus,updateReturnStatus, setToken };
+const updateBook = async (id, updatedBook) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const request = await axios.put(`${baseUrl}/${id}`, updatedBook, config);
+};
+
+export default { getAll, create, deleteBook, updateLoanStatus,updateReturnStatus, updateBook, setToken };
