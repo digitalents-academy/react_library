@@ -27,7 +27,6 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("user");
-    console.log("asd");
     console.log(loggedUserJSON);
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
