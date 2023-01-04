@@ -49,7 +49,7 @@ const App = () => {
               <Search books={books} user={user} />
             </div>
         }/>
-        <Route path="/:bookId" element={ <BookPage books={books} /> }/>
+        <Route path="/:bookId" element={ <BookPage books={books} user={user}/> }/>
         <Route path="/admin" element={ <Admin books={books} /> }/>
       </Routes>
       <ToastContainer 

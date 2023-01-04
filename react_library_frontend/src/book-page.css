@@ -9,18 +9,23 @@
     color: black;
 }
 
-.back-button {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 15px 0px;
-    background-color: white;
-
+.back-and-edit-buttons {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.edit-button {
+    height: 40px;
     font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    background-color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
+    cursor: pointer;
 }
 
 .back-button:hover {
