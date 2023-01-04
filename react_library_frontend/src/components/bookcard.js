@@ -55,7 +55,7 @@ const BookCard = ({ filteredBooks, user }) => {
                   <p>Genre: {book.genre}</p>
                   <p>Release: {book.releaseYear}</p>
                   <p className="bookCard__description">
-                    {book.description?.slice(0, 200).trim()}
+                    {book.description?.slice(0, 150).trim()}
                     {book.description?.length > 200 ? "..." : null}
                   </p>
                   <p className="bookStatus">

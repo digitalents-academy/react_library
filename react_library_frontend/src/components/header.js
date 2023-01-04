@@ -33,6 +33,7 @@ const Header = ( {user, setUser} ) => {
   return (
     <div className='header'>
       <img className='header-logo' src="../images/logo-lightmode.png" alt='logo'></img>
+      <nav className='navBar'>
       {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
       { user === "" ? 
         <button className="frontPageLoginButton" onClick={showLoginWindow}>Login</button> 
@@ -47,6 +48,7 @@ const Header = ( {user, setUser} ) => {
           Logout
         </button>
       }
+      </nav>
       
       { loginWindow ? <div onClick={(e)=>showLogin(e)} className="popupBackground"> 
         <div className="loginRegisterWindowContainer">

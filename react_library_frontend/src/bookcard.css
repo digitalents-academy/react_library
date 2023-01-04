@@ -1,3 +1,24 @@
+.bookCard {
+  
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+/* .imageAndContent {
+  display: flex;
+  flex-direction: row;
+} */
+
+.bookCard__image {
+  margin-right: 1rem;
+  float: left;
+  width: 30%;
+  height: auto;
+}
+
+@media screen and (min-width: 480px) {
+
 .bookCardContainer {
   border: 1px solid red;
   display: flex;
@@ -26,7 +47,7 @@
 
 .bookCard {
   border: 1px solid green;
-  width: 30rem;
+  min-width: 23rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -87,11 +108,5 @@
   margin-bottom: 2rem;
   opacity: 1;
 }
+}
 
-/* .bookCard__description {
-  border: 1px solid red;
-  max-height: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
