@@ -90,10 +90,10 @@ bookRouter.put("/loan/:id", async (request, response, next) => {
   const authorization = request.get("authorization");
   let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
-  console.log(databaseBook.loaners.filter((item) => item.user === user.id));
+
   if (
     databaseBook.loaners.length < databaseBook.copies &&
-    databaseBook.loaners.filter((item) => item.user === user.id) !== 0
+    databaseBook.loaners.filter((item) => item.user == user.id) !== 0
   ) {
     let newBook = databaseBook;
     let loanDate = new Date();
