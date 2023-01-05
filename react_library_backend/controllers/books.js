@@ -27,7 +27,7 @@ bookRouter.post("/", async (request, response, next) => {
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
-    copies: body.copies || 2,
+    copies: body.copies || 1,
   });
   book
     .save()
