@@ -12,8 +12,7 @@ function UserPage({ user }) {
                 <h1>{user.email}</h1>
                 <div className="loaned-books">
                     <h2>Loaned books</h2>
-                    {console.log(user.loaned)}
-                    {/* {user.loaned.map((book) => <p>{book.title} by {book.author}</p>)} */}
+                    {user.loaned && user.loaned.map((book) => <p key={book.id}>{book.title} by {book.author}</p>)}
                 </div>
                 <h2>Reserved books</h2>
             </div>
