@@ -61,10 +61,16 @@ bookRouter.put("/return/:id", async (request, response, next) => {
   let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
-  if (databaseBook.loaners.includes(user.id)) {
+  if (databaseBook.loaners.filter((item) => item.user == user.id).length > 0) {
     let newBook = databaseBook;
-    newBook.loaners = databaseBook.loaners.remove(user.id);
-    console.log(newBook);
+    console.log(
+      (newBook.loaners = databaseBook.loaners.filter(
+        (item) => item.user != user.id
+      ))
+    );
+    newBook.loaners = databaseBook.loaners.filter(
+      (item) => item.user != user.id
+    );
     Book.findByIdAndUpdate(request.params.id, newBook)
       .then((updatedBook) => {
         response.json(updatedBook);
@@ -80,14 +86,14 @@ bookRouter.put("/return/:id", async (request, response, next) => {
 
 //loan book
 bookRouter.put("/loan/:id", async (request, response, next) => {
-  console.log(request);
+  console.log("loan");
   const authorization = request.get("authorization");
   let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
   if (
     databaseBook.loaners.length < databaseBook.copies &&
-    !databaseBook.loaners.includes(user.id)
+    databaseBook.loaners.filter((item) => item.user == user.id) !== 0
   ) {
     let newBook = databaseBook;
     let loanDate = new Date();
@@ -98,11 +104,8 @@ bookRouter.put("/loan/:id", async (request, response, next) => {
       loanDate: loanDate,
       returnDate: returnDate,
     };
-    console.log(loan);
 
     newBook.loaners = databaseBook.loaners.push(loan);
-    console.log("asd");
-    console.log(newBook);
 
     Book.findByIdAndUpdate(request.params.id, newBook)
       .then((updatedBook) => {
