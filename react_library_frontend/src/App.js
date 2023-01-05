@@ -2,6 +2,7 @@ import Header from "./components/header";
 import Search from "./components/Search";
 import BookPage from "./components/BookPage";
 import Admin from "./components/Admin";
+import UserPage from "./components/UserPage";
 import service from "./service/books";
 import { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -51,6 +52,7 @@ const App = () => {
         }/>
         <Route path="/:bookId" element={ <BookPage books={books} user={user}/> }/>
         <Route path="/admin" element={ <Admin books={books} /> }/>
+        <Route path="users/:userId" element={ <UserPage user={user} /> }/>
       </Routes>
       <ToastContainer 
         autoClose={2000}

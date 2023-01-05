@@ -34,20 +34,27 @@ const Header = ( {user, setUser} ) => {
     <div className='header'>
       <img className='header-logo' src="../images/logo-lightmode.png" alt='logo'></img>
       <nav className='navBar'>
-      {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
-      { user === "" ? 
-        <button className="frontPageLoginButton" onClick={showLoginWindow}>Login</button> 
-        : <button
-            className='logout-button'
-            onClick={() => {
-              localStorage.clear();
-              setUser("");
-              toast.info("Logged out");
-            }}
-        >
-          Logout
-        </button>
-      }
+
+        {/* Admin page link */}
+        {user.admin && <Link to={"/admin"} className='admin-link'> Admin </Link>}
+
+        {/* User page link */}
+        {user && !user.admin && <Link to={"users/" + user.id} className='user-page-link'><ion-icon name="person-circle-outline" size="large"></ion-icon></Link>}
+
+        {/* Login or Logout button */}
+        { user === "" ? 
+          <button className="frontPageLoginButton" onClick={showLoginWindow}>Login</button> 
+          : <button
+              className='logout-button'
+              onClick={() => {
+                localStorage.clear();
+                setUser("");
+                toast.info("Logged out");
+              }}
+          >
+            Logout
+          </button>
+        }
       </nav>
       
       { loginWindow ? <div onClick={(e)=>showLogin(e)} className="popupBackground"> 
