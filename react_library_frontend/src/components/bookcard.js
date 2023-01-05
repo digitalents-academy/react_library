@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const BookCard = ({ filteredBooks, user }) => {
   return (
@@ -12,7 +12,6 @@ const BookCard = ({ filteredBooks, user }) => {
         return (
           <React.Fragment key={book.id}>
             <div className="bookCard">
-
               <div className="imageAndContent">
                 <img className="bookCard__image" src={book.img} />
                 <div className="book__content">
@@ -20,7 +19,6 @@ const BookCard = ({ filteredBooks, user }) => {
                     <h1>{book.title}</h1>
                     <Link to={"/" + book.id} style={{ textDecoration: "none" }}>
                       {" "}
-
                       <h2 className="book--link"> More Info </h2>{" "}
                     </Link>
 
@@ -38,7 +36,7 @@ const BookCard = ({ filteredBooks, user }) => {
                                 onClick: () => {
                                   service.deleteBook(book.id);
                                   toast.success("Book deleted");
-                                }
+                                },
                               },
                               {
                                 label: "No",
@@ -61,27 +59,30 @@ const BookCard = ({ filteredBooks, user }) => {
                   <p className="bookStatus">
                     {book.loaners[0] ? "Loaned" : "Available"}
                   </p>
-              
-                 {/* checks if the loaner is the same as the user logged in */}
-                 {book.loaners.filter((loaner) => loaner._id === user.id).length > 0 ?
-                  <button
-                  className="bookCard__button"
-                  onClick={()=> {service.updateReturnStatus(book.id)}}
-                >
-                 Return
-                </button> : book.loaners.length < book.copies ?  <button
-                    className="bookCard__button"
-                    onClick={()=> {service.updateLoanStatus(book.id)}}
-                  >
-                   Loan
-                  </button> : <button
-                    className="bookCard__button"
-                   
-                  >
-                    Unavailable
-                  </button>} 
 
-    
+                  {/* checks if the loaner is the same as the user logged in */}
+                  {book.loaners.filter((loaner) => loaner.user === user.id)
+                    .length > 0 ? (
+                    <button
+                      className="bookCard__button"
+                      onClick={() => {
+                        service.updateReturnStatus(book.id);
+                      }}
+                    >
+                      Return
+                    </button>
+                  ) : book.loaners.length < book.copies ? (
+                    <button
+                      className="bookCard__button"
+                      onClick={() => {
+                        service.updateLoanStatus(book.id);
+                      }}
+                    >
+                      Loan
+                    </button>
+                  ) : (
+                    <button className="bookCard__button">Unavailable</button>
+                  )}
                 </div>
               </div>
             </div>
