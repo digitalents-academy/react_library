@@ -1,8 +1,9 @@
+
+
 .edit-component {
-    width: 35%;
-    margin-right: auto;
-    margin-left: auto;
-    margin-bottom: 50px;
+    width: 90%;
+    margin-left: 2rem;
+    
 }
 
 .edit-form-header {
@@ -51,7 +52,7 @@ ion-icon {
 }
 
 textarea {
-    height: 70px;
+    height: 100px;
 }
 
 .edit-form button {
@@ -64,4 +65,16 @@ textarea {
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
     cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+.edit-component {
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+}
+
+
+
 }
