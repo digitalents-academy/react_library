@@ -27,7 +27,7 @@ bookRouter.post("/", async (request, response, next) => {
     img: body.img,
     tags: body.tags,
     reservation: body.reservation,
-    copies: body.copies || 1,
+    copies: body.copies || 2,
   });
   book
     .save()
@@ -61,14 +61,15 @@ bookRouter.put("/return/:id", async (request, response, next) => {
   let user = jwt.verify(authorization, process.env.SECRET);
   const databaseBook = await Book.findById(request.params.id);
 
-  let userMatch = databaseBook.loaners.filter((item) => item.user == user.id);
-  console.log(
-    databaseBook.loaners.filter((item) => item.user == user.id).length > 0
-  );
   if (databaseBook.loaners.filter((item) => item.user == user.id).length > 0) {
     let newBook = databaseBook;
+    console.log(
+      (newBook.loaners = databaseBook.loaners.filter(
+        (item) => item.user != user.id
+      ))
+    );
     newBook.loaners = databaseBook.loaners.filter(
-      (item) => item.user == !user.id
+      (item) => item.user != user.id
     );
     Book.findByIdAndUpdate(request.params.id, newBook)
       .then((updatedBook) => {
