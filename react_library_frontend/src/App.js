@@ -28,7 +28,6 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("user");
-    console.log("asd");
     console.log(loggedUserJSON);
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
@@ -52,7 +51,7 @@ const App = () => {
         }/>
         <Route path="/:bookId" element={ <BookPage books={books} user={user}/> }/>
         <Route path="/admin" element={ <Admin books={books} /> }/>
-        <Route path="users/:userId" element={ <UserPage user={user} /> }/>
+        <Route path="users/:userId" element={ <UserPage user={user}/> }/>
       </Routes>
       <ToastContainer 
         autoClose={2000}

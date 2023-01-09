@@ -1,8 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { useParams } from 'react-router-dom'
 import '../user-page.css'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-function UserPage({ user }) {
+function UserPage(props) {
+
+    const params = useParams()
+    const [user, setUser] = useState('')
+
+    // Fetch user
+    useEffect(() => {
+        axios.get(`http://localhost:3003/api/users/${params.userId}`, 
+        {headers: {Authorization: props.user.token}})
+        .then(res => setUser(res.data))
+        .catch((error) => console.log(error))
+    }, [])
+
     return (
         <div className="user-page">
             <Link to="/">
@@ -14,7 +28,6 @@ function UserPage({ user }) {
                     <h2>Loaned books</h2>
                     {user.loaned && user.loaned.map((book) => <p key={book.id}>{book.title} by {book.author}</p>)}
                 </div>
-                <h2>Reserved books</h2>
             </div>
         </div>
     )

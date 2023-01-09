@@ -4,9 +4,9 @@ const loginRouter = require("express").Router();
 const User = require("../models/user");
 
 loginRouter.post("/", async (request, response) => {
-  const { email, password, loaned } = request.body;
-  console.log(request.body);
-  const user = await User.findOne({ email }).populate("loaned");;
+  const { email, password } = request.body;
+  console.log(email, password);
+  const user = await User.findOne({ email }).populate("loaned");
   const passwordCorrect =
     user === null ? false : await bcrypt.compare(password, user.passwordHash);
 
