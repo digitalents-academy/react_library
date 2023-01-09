@@ -63,11 +63,6 @@ bookRouter.put("/return/:id", async (request, response, next) => {
 
   if (databaseBook.loaners.filter((item) => item.user == user.id).length > 0) {
     let newBook = databaseBook;
-    console.log(
-      (newBook.loaners = databaseBook.loaners.filter(
-        (item) => item.user != user.id
-      ))
-    );
     newBook.loaners = databaseBook.loaners.filter(
       (item) => item.user != user.id
     );
@@ -116,6 +111,31 @@ bookRouter.put("/loan/:id", async (request, response, next) => {
 
     user.loaned = user.loaned.concat(request.params.id);
     await user.save();
+  } else {
+    response.status(444).end();
+  }
+});
+
+//renew book
+bookRouter.put("/renew/:id", async (request, response) => {
+  const authorization = request.get("authorization");
+  const user = jwt.verify(authorization, process.env.SECRET);
+  const databaseBook = await Book.findById(request.params.id);
+  let filteredBooks = databaseBook.loaners.filter(
+    (item) => item.user == user.id
+  );
+
+  if (filteredBooks.length > 0) {
+    let newBook = databaseBook;
+    let userIds = newBook.loaners.map((item) => item.user.toString());
+    let index = userIds.indexOf(filteredBooks[0].user.toString());
+    let newReturnDate = newBook.loaners[index];
+    newReturnDate.returnDate.setDate(newReturnDate.returnDate.getDate() + 28);
+    Book.findByIdAndUpdate(request.params.id, newBook)
+      .then((updatedBook) => {
+        response.json(updatedBook);
+      })
+      .catch((error) => next(error));
   } else {
     response.status(444).end();
   }
