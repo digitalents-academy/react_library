@@ -127,17 +127,10 @@ bookRouter.put("/renew/:id", async (request, response) => {
 
   if (filteredBooks.length > 0) {
     let newBook = databaseBook;
-    let indexOfFiltered = newBook.loaners.map((item) => item.user.toString());
-    console.log(indexOfFiltered, "\n", filteredBooks[0].user.toString());
-    console.log(
-      typeof indexOfFiltered[0],
-      typeof filteredBooks[0].user.toString()
-    );
-    indexOfFiltered.findIndex(filteredBooks[0].user.toString());
-
-    let newReturnDate = newBook.loaners[indexOfFiltered];
-    newReturnDate.setDate(newReturnDate.getDate() + 28);
-
+    let userIds = newBook.loaners.map((item) => item.user.toString());
+    let index = userIds.indexOf(filteredBooks[0].user.toString());
+    let newReturnDate = newBook.loaners[index];
+    newReturnDate.returnDate.setDate(newReturnDate.returnDate.getDate() + 28);
     Book.findByIdAndUpdate(request.params.id, newBook)
       .then((updatedBook) => {
         response.json(updatedBook);
