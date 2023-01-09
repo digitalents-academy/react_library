@@ -6,7 +6,7 @@ const User = require("../models/user");
 loginRouter.post("/", async (request, response) => {
   const { email, password } = request.body;
   console.log(email, password);
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).populate("loaned");
   const passwordCorrect =
     user === null ? false : await bcrypt.compare(password, user.passwordHash);
 
@@ -19,6 +19,7 @@ loginRouter.post("/", async (request, response) => {
     email: user.email,
     id: user._id,
     admin: user.admin,
+    loaned: user.loaned
   };
 
   const token = jwt.sign(
@@ -28,7 +29,7 @@ loginRouter.post("/", async (request, response) => {
     { expiresIn: 60 * 60 * 24 }
   );
 
-  response.status(200).send({ token, email: user.email, admin: user.admin, id: user._id});
+  response.status(200).send({ token, email: user.email, admin: user.admin, id: user._id, loaned: user.loaned});
 });
 
 module.exports = loginRouter;
