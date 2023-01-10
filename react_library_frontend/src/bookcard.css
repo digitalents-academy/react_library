@@ -4,6 +4,7 @@
 }
 
 .bookCard {
+
   margin-bottom: 2rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -16,6 +17,7 @@
   
 }
 
+
 .bookCard__image {
  
   margin-right: 1rem;
@@ -26,6 +28,7 @@
 }
 
 @media screen and (min-width: 800px) {
+
 
 .bookCardContainer {
   display: flex;
@@ -123,5 +126,6 @@
   margin-bottom: 2rem;
   opacity: 1;
 }
+
 }
 

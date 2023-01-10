@@ -55,7 +55,7 @@ userRouter.get("/:id", async (request, response) => {
   if (!user.admin && request.params.id !== user.id) {
     return response.status(401).json({ error: "no rights" });
   }
-  user = await User.findById(request.params.id);
+  user = await User.findById(request.params.id).populate("loaned");
   if (user) {
     response.json(user.toJSON());
   } else {

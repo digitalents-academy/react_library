@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 const BookCard = ({ filteredBooks, user }) => {
   return (
@@ -12,7 +12,6 @@ const BookCard = ({ filteredBooks, user }) => {
         return (
           <React.Fragment key={book.id}>
             <div className="bookCard">
-
               <div className="imageAndContent">
                 <img className="bookCard__image" src={book.img} />
                 <div className="book__content">
@@ -20,7 +19,6 @@ const BookCard = ({ filteredBooks, user }) => {
                     <h1>{book.title}</h1>
                     <Link to={"/" + book.id} style={{ textDecoration: "none" }}>
                       {" "}
-
                       <h2 className="book--link"> More Info </h2>{" "}
                     </Link>
 
@@ -38,7 +36,7 @@ const BookCard = ({ filteredBooks, user }) => {
                                 onClick: () => {
                                   service.deleteBook(book.id);
                                   toast.success("Book deleted");
-                                }
+                                },
                               },
                               {
                                 label: "No",
@@ -61,6 +59,7 @@ const BookCard = ({ filteredBooks, user }) => {
                   <p className="bookStatus">
                     {book.loaners[0] ? "On Loan" : "Available"}
                   </p>
+
               
                  {/* checks if the loaner is the same as the user logged in */}
                  
@@ -82,7 +81,6 @@ const BookCard = ({ filteredBooks, user }) => {
                     Unavailable
                   </button> : null} 
 
-    
                 </div>
               </div>
             </div>
