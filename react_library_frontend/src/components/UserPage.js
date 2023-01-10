@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import '../user-page.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import dateFormat from "dateformat"
 
 function UserPage(props) {
 
@@ -24,9 +25,14 @@ function UserPage(props) {
             </Link>
             <div className="user-page-text">
                 <h1>{user.email}</h1>
+                <h2>Loaned books</h2>
                 <div className="loaned-books">
-                    <h2>Loaned books</h2>
-                    {user.loaned && user.loaned.map((book) => <p key={book.id}>{book.title} by {book.author}</p>)}
+                    {user.loaned && user.loaned.map((book) => 
+                        <div key={book.id} className="individual-book">
+                            <p className="title-row"><b>{book.title}</b> by {book.author}</p>
+                            <p>Return by {dateFormat((book.loaners.filter(loaner => loaner.user === user._id)[0].returnDate), "d mmm yyyy")}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

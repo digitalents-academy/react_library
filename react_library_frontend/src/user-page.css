@@ -7,7 +7,19 @@
     margin-top: 50px;
 }
 
+.user-page h2 {
+    margin-top: 50px;
+}
+
 .loaned-books {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+.individual-book {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-row {
+    max-width: 400px;
 }
