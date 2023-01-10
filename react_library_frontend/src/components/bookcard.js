@@ -24,9 +24,9 @@ const BookCard = ({ filteredBooks, user }) => {
 
                     {/* Delete button & confirm message */}
                     {user.admin && (
-                      <button
+                      <img
                         className="bookCard__deleteIcon"
-                        
+                        src="./images/icon-close.svg"
                         onClick={() =>
                           confirmAlert({
                             title: "Are you sure you want to delete this book?",
@@ -45,7 +45,7 @@ const BookCard = ({ filteredBooks, user }) => {
                             ],
                           })
                         }
-                      >Delete Book</button>
+                      />
                     )}
                   </div>
 
@@ -57,30 +57,32 @@ const BookCard = ({ filteredBooks, user }) => {
                     {book.description?.length > 200 ? "..." : null}
                   </p>
                   <p className="bookStatus">
-                    {book.loaners[0] ? "On Loan" : "Available"}
+                    {book.loaners[0] ? "Loaned" : "Available"}
                   </p>
 
-              
-                 {/* checks if the loaner is the same as the user logged in */}
-                 
-                 { user ? book.loaners.filter((loaner) => loaner._id === user.id).length > 0 ?
-                  <button
-                  className="bookCard__button"
-                  onClick={()=> {service.updateReturnStatus(book.id)}}
-                >
-                 Return
-                </button> : book.loaners.length < book.copies ?  <button
-                    className="bookCard__button"
-                    onClick={()=> {service.updateLoanStatus(book.id)}}
-                  >
-                   Loan
-                  </button> : <button
-                    className="bookCard__button"
-                   
-                  >
-                    Unavailable
-                  </button> : null} 
-
+                  {/* checks if the loaner is the same as the user logged in */}
+                  {book.loaners.filter((loaner) => loaner.user === user.id)
+                    .length > 0 ? (
+                    <button
+                      className="bookCard__button"
+                      onClick={() => {
+                        service.updateReturnStatus(book.id);
+                      }}
+                    >
+                      Return
+                    </button>
+                  ) : book.loaners.length < book.copies ? (
+                    <button
+                      className="bookCard__button"
+                      onClick={() => {
+                        service.updateLoanStatus(book.id);
+                      }}
+                    >
+                      Loan
+                    </button>
+                  ) : (
+                    <button className="bookCard__button">Unavailable</button>
+                  )}
                 </div>
               </div>
             </div>
