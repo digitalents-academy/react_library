@@ -1,3 +1,86 @@
+
+/* body {
+    padding: 1rem;
+} */
+
+.back-button {
+    margin-left: 2rem;
+}
+
+.edit-button {
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+}
+
+.book-image {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem
+}
+
+.book-text {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.recom-div {
+    margin-left: 2rem;
+    /* margin-top: 8rem; */
+}
+
+.recom-all {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recom-one {
+    text-align: center;
+    width: 15%;
+    font-weight: 600;
+    margin-right: 2rem;
+}
+
+.recom-one img {
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+@media screen and (min-width: 685px) {
+
+    .book-page {
+      margin-right: 2rem;
+    }
+    .book-image {
+      width: 30%;
+      float: left;
+      margin-left: 2rem;
+      margin-right: 2rem
+}
+
+.book-text {
+    min-width: 500px;
+}
+   
+.recom-div {
+    width: 100%;
+    /* text-align: center; */
+    clear: both;
+}
+
+.recom-one  {
+    width: 15%;
+}
+
+.recom-one img {
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+    
+}
+
+@media screen and (min-width: 800px) {
 .book-page {
     margin: 50px;
     font-family: 'Raleway', sans-serif;
@@ -39,6 +122,9 @@
 
 .book-image {
     width: 30%;
+    min-width: 400px;
+    height: 700px;
+    float: left;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -46,6 +132,7 @@
     width: 40%;
     display: flex;
     flex-direction: column;
+   
 }
 
 .status-loaned {
@@ -62,23 +149,25 @@
     text-shadow: 2px 2px lightgrey;
 }
 
-.recom-div {
-    margin-top: 50px;
-}
+/* .recom-div {
+    margin-top: 3rem;
+    float: unset;
+} */
 
 .recom-all {
     display: flex;
-    align-items: flex-end;
     gap: 20px;
 }
 
 .recom-one {
     text-align: center;
-    width: 150px;
+    width: 20%;
     font-weight: 600;
 }
 
 .recom-one img {
-    width: 150px;
+    top: 0;
+    width: 100%;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 }
